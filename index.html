@@ -98,8 +98,42 @@
             margin-right: 6px;
         }
 
-        .work-icon-bg {
-            background: radial-gradient(circle, rgba(132, 204, 22, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+        /* REDESIGNED "How We Work" Path Styles */
+        .work-path-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #84cc16 10%, #84cc16 90%, transparent);
+            transform: translateX(-50%);
+        }
+
+        .stage-card {
+            background: white;
+            border-radius: 32px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 30px -5px rgba(0, 0, 0, 0.03);
+            transition: all 0.5s ease;
+        }
+        .stage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(132, 204, 22, 0.15);
+            border-color: rgba(132, 204, 22, 0.3);
+        }
+
+        .stage-number-bespoke {
+            font-size: 1.5rem;
+            font-weight: 900;
+            width: 60px;
+            height: 60px;
+            background: #1c1917;
+            color: #84cc16;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
         }
 
         /* Partner Section Specifics */
@@ -108,7 +142,6 @@
             position: relative;
         }
 
-        /* Subtle organic pattern overlay for the card */
         .partner-card-pattern {
             position: absolute;
             inset: 0;
@@ -157,23 +190,27 @@
         ::-webkit-scrollbar-track { background: #fafaf9; }
         ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #84cc16; }
+
+        @media (max-width: 1024px) {
+            .work-path-line { left: 40px; }
+        }
     </style>
 </head>
 <body class="bg-[#fafaf9]"> 
 
     <!-- Header / Nav Bar -->
     <div class="fixed top-0 w-full z-50 px-4 pt-6">
-        <header class="container mx-auto navbar-pill px-8 h-16 flex items-center justify-between max-w-6xl">
+        <header class="container mx-auto navbar-pill px-8 h-16 flex items-center justify-between max-w-5xl">
             <div class="flex items-center">
-                <span class="text-lg font-black tracking-tighter text-stone-900">KARTAVYA CSR</span>
+                <span class="text-lg font-black tracking-tighter text-stone-900 uppercase">KSR</span>
             </div>
             
-            <nav class="hidden lg:flex space-x-8 text-[13px] font-bold text-stone-900">
+            <nav class="hidden lg:flex space-x-10 text-[13px] font-bold text-stone-900">
                 <a href="#" class="hover:text-citron-dark transition">Home</a>
+                <a href="#how-we-work-section" class="hover:text-citron-dark transition">How It Works</a>
+                <a href="#partner-section" class="hover:text-citron-dark transition">NGOs</a>
                 <a href="#impact" class="hover:text-citron-dark transition">Impact</a>
-                <a href="#how-we-work-section" class="hover:text-citron-dark transition">How it Works</a>
-                <a href="#success" class="hover:text-citron-dark transition">Success Stories</a>
-                <a href="#partner-section" class="hover:text-citron-dark transition">Partner with Us</a>
+                <a href="#footer" class="hover:text-citron-dark transition">About</a>
             </nav>
 
             <div class="flex items-center">
@@ -197,7 +234,6 @@
                         India's Premier <span class="text-citron-primary">CSR</span><br>Execution Platform
                     </h1>
                     
-                    <!-- Updated: Reference layout for feature badges -->
                     <div class="flex flex-wrap items-center gap-6 mb-10">
                         <div class="flex items-center space-x-2">
                             <div class="w-6 h-6 rounded-full bg-citron-primary flex items-center justify-center text-white shadow-sm shadow-lime-200">
@@ -217,7 +253,6 @@
                         Connect with verified NGOs, protect funds through escrow, and generate audit-ready compliance reports—all in one platform.
                     </p>
 
-                    <!-- Updated Buttons -->
                     <div class="flex flex-wrap gap-4 mb-10">
                         <button class="bg-citron-primary text-white px-10 py-4 rounded-full font-black hover:bg-lime-600 transition flex items-center shadow-xl shadow-lime-200">
                             Get Started
@@ -270,7 +305,7 @@
                     <div class="rounded-3xl overflow-hidden shadow-2xl relative group h-full">
                         <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Students" class="w-full h-full object-cover filter sepia-[0.1]">
                         <div class="absolute inset-0 bg-lime-900/10 group-hover:bg-lime-900/0 transition"></div>
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur p-5 rounded-2xl flex items-center justify-between border border-stone-100">
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur p-5 rounded-2xl flex items-center justify-between border border-stone-100 shadow-2xl">
                             <div>
                                 <p class="text-xs font-bold text-lime-600 uppercase tracking-wider">KSR Impact Story</p>
                                 <p class="font-bold text-stone-900 text-lg">Solar Power for Rural Clinics</p>
@@ -300,6 +335,7 @@
                                 <p class="text-[10px] text-stone-400 font-bold uppercase">Students</p>
                             </div>
                         </div>
+                        <!-- Additional categories as per previous design -->
                         <div class="bg-[#fafaf9] p-5 rounded-2xl border border-stone-100 flex items-center justify-between hover:border-lime-200 transition group cursor-pointer shadow-sm">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-white shadow-sm text-citron-primary rounded-lg flex items-center justify-center mr-4 group-hover:bg-citron-primary group-hover:text-white transition"><i class="fas fa-heartbeat"></i></div>
@@ -313,76 +349,87 @@
                                 <p class="text-[10px] text-stone-400 font-bold uppercase">Lives</p>
                             </div>
                         </div>
-                        <div class="bg-[#fafaf9] p-5 rounded-2xl border border-stone-100 flex items-center justify-between hover:border-lime-200 transition group cursor-pointer shadow-sm">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-white shadow-sm text-amber-500 rounded-lg flex items-center justify-center mr-4 group-hover:bg-amber-500 group-hover:text-white transition"><i class="fas fa-cloud-sun"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-stone-800">Environment</h4>
-                                    <p class="text-xs text-stone-500">28 verified projects</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm font-bold text-stone-800">3.2k+</p>
-                                <p class="text-[10px] text-stone-400 font-bold uppercase">CO2 Offset</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. How We Work Section -->
-    <section id="how-we-work-section" class="py-32 bg-[#fafaf9] relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-24">
-                <p class="text-stone-400 font-bold text-sm uppercase tracking-[0.3em] mb-4">Process Flow</p>
-                <h2 class="text-5xl lg:text-6xl font-black text-stone-900 tracking-tight">How we Work?</h2>
+    <!-- 3. HOW WE WORK: TARGETED REDESIGN -->
+    <section id="how-we-work-section" class="py-40 bg-[#fafaf9] relative overflow-hidden">
+        <div class="container mx-auto px-6 relative">
+            <div class="text-center mb-32">
+                <p class="text-citron-primary font-black text-xs uppercase mb-4 tracking-[0.6em]">The Protocol</p>
+                <h2 class="text-5xl lg:text-7xl font-black text-stone-900 tracking-tighter">How we Work?</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative max-w-7xl mx-auto">
-                <div class="text-center group">
-                    <div class="work-icon-bg w-40 h-40 mx-auto mb-10 rounded-full flex items-center justify-center group-hover:bg-citron-soft transition duration-500 relative">
-                        <div class="w-24 h-24 bg-white rounded-[32px] shadow-2xl border border-stone-50 flex items-center justify-center text-blue-500 text-4xl group-hover:-translate-y-2 transition-transform">
-                            <i class="fas fa-city"></i>
-                        </div>
-                        <span class="absolute top-0 right-0 w-10 h-10 bg-stone-900 text-white rounded-full flex items-center justify-center font-black text-sm">01</span>
+            <!-- Bespoke Vertical Path Layout -->
+            <div class="relative max-w-5xl mx-auto">
+                <div class="work-path-line"></div>
+
+                <!-- Stage 01 -->
+                <div class="relative flex flex-col lg:flex-row items-center justify-between mb-32 group">
+                    <div class="lg:w-5/12 text-right hidden lg:block pr-20">
+                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity">CORPORATE</p>
                     </div>
-                    <h4 class="text-xl font-black text-stone-900 mb-3 group-hover:text-citron-primary transition">Corporates Register</h4>
-                    <p class="text-stone-500 text-sm px-4">Define CSR focus areas, budgets, and specific impact mandates.</p>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="work-icon-bg w-40 h-40 mx-auto mb-10 rounded-full flex items-center justify-center group-hover:bg-citron-soft transition duration-500 relative">
-                        <div class="w-24 h-24 bg-white rounded-[32px] shadow-2xl border border-stone-50 flex items-center justify-center text-citron-primary text-4xl group-hover:-translate-y-2 transition-transform">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <span class="absolute top-0 right-0 w-10 h-10 bg-stone-900 text-white rounded-full flex items-center justify-center font-black text-sm">02</span>
+                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
+                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">01</div>
                     </div>
-                    <h4 class="text-xl font-black text-stone-900 mb-3 group-hover:text-citron-primary transition">NGO Verification</h4>
-                    <p class="text-stone-500 text-sm px-4">Implementation partners undergo deep due diligence.</p>
+                    <div class="lg:w-5/12 lg:pl-20">
+                        <div class="stage-card p-10 relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-citron-soft/30 rounded-full blur-2xl"></div>
+                            <h4 class="text-2xl font-black text-stone-900 mb-4">Mandate Definition</h4>
+                            <p class="text-stone-500 leading-relaxed font-medium">Corporates establish their specific CSR goals, geographic requirements, and budgetary frameworks through our compliant gateway.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-center group">
-                    <div class="work-icon-bg w-40 h-40 mx-auto mb-10 rounded-full flex items-center justify-center group-hover:bg-citron-soft transition duration-500 relative">
-                        <div class="w-24 h-24 bg-white rounded-[32px] shadow-2xl border border-stone-50 flex items-center justify-center text-amber-500 text-4xl group-hover:-translate-y-2 transition-transform">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                        <span class="absolute top-0 right-0 w-10 h-10 bg-stone-900 text-white rounded-full flex items-center justify-center font-black text-sm">03</span>
+                <!-- Stage 02 -->
+                <div class="relative flex flex-col lg:flex-row-reverse items-center justify-between mb-32 group">
+                    <div class="lg:w-5/12 text-left hidden lg:block pl-20">
+                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity uppercase">NGO Audit</p>
                     </div>
-                    <h4 class="text-xl font-black text-stone-900 mb-3 group-hover:text-citron-primary transition">Smart Matching</h4>
-                    <p class="text-stone-500 text-sm px-4">AI algorithms pair corporate goals with the best causes.</p>
+                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
+                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">02</div>
+                    </div>
+                    <div class="lg:w-5/12 lg:pr-20">
+                        <div class="stage-card p-10 relative overflow-hidden border-t-citron-primary">
+                            <h4 class="text-2xl font-black text-stone-900 mb-4">Rigorous Verification</h4>
+                            <p class="text-stone-500 leading-relaxed font-medium">Implementation partners undergo a deep 4-layer due diligence including 12A/80G status, past impact audits, and on-ground capacity checks.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-center group">
-                    <div class="work-icon-bg w-40 h-40 mx-auto mb-10 rounded-full flex items-center justify-center group-hover:bg-citron-soft transition duration-500 relative">
-                        <div class="w-24 h-24 bg-white rounded-[32px] shadow-2xl border border-stone-50 flex items-center justify-center text-stone-900 text-4xl group-hover:-translate-y-2 transition-transform">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <span class="absolute top-0 right-0 w-10 h-10 bg-stone-900 text-white rounded-full flex items-center justify-center font-black text-sm">04</span>
+                <!-- Stage 03 -->
+                <div class="relative flex flex-col lg:flex-row items-center justify-between mb-32 group">
+                    <div class="lg:w-5/12 text-right hidden lg:block pr-20">
+                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity">AI MATCH</p>
                     </div>
-                    <h4 class="text-xl font-black text-stone-900 mb-3 group-hover:text-citron-primary transition">Impact Reporting</h4>
-                    <p class="text-stone-500 text-sm px-4">Live tracking and audit-ready reporting for regulators.</p>
+                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
+                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">03</div>
+                    </div>
+                    <div class="lg:w-5/12 lg:pl-20">
+                        <div class="stage-card p-10 relative overflow-hidden">
+                            <h4 class="text-2xl font-black text-stone-900 mb-4">Ecosystem Alignment</h4>
+                            <p class="text-stone-500 leading-relaxed font-medium">Our proprietary algorithm pairs corporate budgets with the highest-impact NGO projects, optimizing for both social ROI and local compliance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 04 -->
+                <div class="relative flex flex-col lg:flex-row-reverse items-center justify-between group">
+                    <div class="lg:w-5/12 text-left hidden lg:block pl-20">
+                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity uppercase">Reporting</p>
+                    </div>
+                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
+                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">04</div>
+                    </div>
+                    <div class="lg:w-5/12 lg:pr-20">
+                        <div class="stage-card p-10 relative overflow-hidden border-t-citron-primary">
+                            <h4 class="text-2xl font-black text-stone-900 mb-4">Milestone Impact</h4>
+                            <p class="text-stone-500 leading-relaxed font-medium">Funds are released via escrow only upon verified milestone completion, concluding with automated, audit-ready compliance reporting.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -426,7 +473,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- PNB Bank -->
                     <div class="carousel-card-wrapper">
                         <div class="impact-card">
@@ -453,42 +499,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Coca Cola -->
-                    <div class="carousel-card-wrapper">
-                        <div class="impact-card">
-                            <div class="flex justify-between items-start">
-                                <div class="text-left">
-                                    <p class="text-[11px] font-black text-stone-400 uppercase tracking-widest mb-1">Corporate Partner</p>
-                                    <h3 class="text-xl font-extrabold text-stone-900">Coca-Cola India</h3>
-                                </div>
-                                <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
-                            </div>
-                            
-                            <div class="text-left py-10">
-                                <span class="data-number">1600kg</span>
-                                <h4 class="text-3xl font-black text-stone-900 leading-tight">Plastic Waste Removed from Ecosystems</h4>
-                            </div>
-
-                            <div class="text-left pt-8 border-t border-stone-100">
-                                <p class="text-stone-500 text-sm leading-relaxed mb-6">
-                                    Large-scale ecological cleanup operations focused on waste management and post-drive environmental auditing.
-                                </p>
-                                <div class="flex items-center text-xs font-black text-stone-900 uppercase tracking-widest group cursor-pointer hover:text-citron-dark transition">
-                                    View Full Case Study <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             
-            <!-- Sleek Control Strip -->
             <div class="flex flex-col items-center mt-16 space-y-8">
                 <div class="flex space-x-3" id="carousel-indicators">
                     <div class="indicator-dot active w-12" data-index="0"></div>
                     <div class="indicator-dot w-4" data-index="1"></div>
-                    <div class="indicator-dot w-4" data-index="2"></div>
                 </div>
                 
                 <div class="flex items-center space-x-12">
@@ -507,83 +524,34 @@
     <section id="partner-section" class="py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6 relative">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-                
-                <!-- Left: Partner Form Card -->
                 <div class="w-full lg:w-1/2 max-w-xl">
                     <div class="partner-card-gradient p-10 lg:p-14 rounded-[40px] shadow-2xl relative overflow-hidden border border-stone-100">
                         <div class="partner-card-pattern"></div>
                         <div class="relative z-10">
                             <h2 class="text-4xl font-black text-citron-dark mb-2">Become Our Partner:</h2>
                             <p class="text-xl font-bold text-stone-800 mb-10">Get Yourself On Board:</p>
-                            
                             <form class="space-y-8">
-                                <div class="relative">
-                                    <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Organisation Name">
-                                </div>
-                                <div class="relative">
-                                    <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Applicant Name">
-                                </div>
-                                <div class="relative">
-                                    <input type="tel" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Phone Number">
-                                </div>
-                                <div class="relative">
-                                    <input type="email" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="E-Mail ID">
-                                </div>
-                                
-                                <p class="text-xs text-stone-600 leading-relaxed font-medium">
-                                    Join a network of visionary organizations. By partnering with KSR, you ensure your social initiatives are backed by bank-grade security and radical transparency.
-                                </p>
-                                
-                                <button type="submit" class="bg-citron-primary hover:bg-lime-600 text-white font-black px-12 py-3 rounded-full shadow-lg transition-transform hover:scale-105">
-                                    Submit
-                                </button>
+                                <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Organisation Name">
+                                <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Applicant Name">
+                                <input type="tel" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Phone Number">
+                                <input type="email" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="E-Mail ID">
+                                <p class="text-xs text-stone-600 leading-relaxed font-medium">Join a network of visionary organizations. By partnering with KSR, you ensure your social initiatives are backed by bank-grade security and radical transparency.</p>
+                                <button type="submit" class="bg-citron-primary hover:bg-lime-600 text-white font-black px-12 py-3 rounded-full shadow-lg transition-transform hover:scale-105">Submit</button>
                             </form>
                         </div>
-                        
-                        <!-- Decorative Circle -->
                         <div class="absolute -right-20 -bottom-20 w-64 h-64 border-[30px] border-citron-primary/10 rounded-full"></div>
                     </div>
                 </div>
 
-                <!-- Right: Concentric Rotating Circles -->
                 <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[500px]">
                     <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center">
-                        <!-- Outer Circle (Corporates) -->
                         <div class="absolute w-full h-full border-2 border-dashed border-stone-200 rounded-full animate-clockwise">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter">
-                                <i class="fas fa-building text-citron-dark"></i>
-                            </div>
-                            <div class="absolute top-1/2 -right-6 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter">
-                                <i class="fas fa-industry text-blue-500"></i>
-                            </div>
-                            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter">
-                                <i class="fas fa-briefcase text-amber-500"></i>
-                            </div>
-                            <div class="absolute top-1/2 -left-6 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter">
-                                <i class="fas fa-landmark text-stone-800"></i>
-                            </div>
+                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter"><i class="fas fa-building text-citron-dark"></i></div>
                         </div>
-
-                        <!-- Inner Circle (NGOs) -->
                         <div class="absolute w-[65%] h-[65%] border-2 border-dashed border-stone-200 rounded-full animate-anticlockwise">
-                            <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti">
-                                <i class="fas fa-hand-holding-heart text-citron-primary"></i>
-                            </div>
-                            <div class="absolute top-1/2 -right-5 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti">
-                                <i class="fas fa-users text-stone-600"></i>
-                            </div>
-                            <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti">
-                                <i class="fas fa-leaf text-green-500"></i>
-                            </div>
-                            <div class="absolute top-1/2 -left-5 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti">
-                                <i class="fas fa-heart text-red-400"></i>
-                            </div>
+                            <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti"><i class="fas fa-hand-holding-heart text-citron-primary"></i></div>
                         </div>
-
-                        <!-- Innermost Circle -->
-                        <div class="absolute w-[30%] h-[30%] bg-citron-primary rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">
-                            KSR
-                        </div>
+                        <div class="absolute w-[30%] h-[30%] bg-citron-primary rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
                     </div>
                 </div>
             </div>
@@ -591,38 +559,29 @@
     </section>
 
     <!-- 6. Footer (Black Theme) -->
-    <footer class="bg-black text-white pt-24 pb-12 border-t border-stone-800">
+    <footer id="footer" class="bg-black text-white pt-24 pb-12 border-t border-stone-800">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                <!-- Branding Column -->
                 <div>
                     <div class="mb-8">
-                        <span class="text-2xl font-black tracking-tighter">KSR</span>
+                        <span class="text-2xl font-black tracking-tighter uppercase">KSR</span>
                     </div>
-                    <p class="text-citron-primary font-black text-sm uppercase tracking-widest mb-4 italic">
-                        WHEN YOU THINK CSR, THINK KSR
-                    </p>
-                    <p class="text-stone-400 text-sm leading-relaxed mb-8 max-w-xs">
-                        India's trusted platform for transparent CSR execution and compliance management.
-                    </p>
+                    <p class="text-citron-primary font-black text-sm uppercase tracking-widest mb-4 italic">WHEN YOU THINK CSR, THINK KSR</p>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-8 max-w-xs">India's trusted platform for transparent CSR execution and compliance management.</p>
                     <div class="space-y-4 text-sm text-stone-400">
                         <p class="flex items-center"><i class="far fa-envelope w-6 text-stone-500"></i> contact@ksr.org</p>
                         <p class="flex items-center"><i class="fas fa-phone-alt w-6 text-stone-500"></i> +91 123 456 7890</p>
                     </div>
                 </div>
-
-                <!-- Platform Column -->
                 <div>
                     <h5 class="font-bold text-white mb-8 text-lg">Platform</h5>
                     <ul class="space-y-4 text-stone-400 text-sm">
                         <li><a href="#how-we-work-section" class="hover:text-citron-primary transition">How It Works</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">Verified NGOs</a></li>
+                        <li><a href="#partner-section" class="hover:text-citron-primary transition">Verified NGOs</a></li>
                         <li><a href="#impact" class="hover:text-citron-primary transition">Impact Stories</a></li>
                         <li><a href="#" class="hover:text-citron-primary transition">Compliance</a></li>
                     </ul>
                 </div>
-
-                <!-- Partners Column -->
                 <div>
                     <h5 class="font-bold text-white mb-8 text-lg">Partners</h5>
                     <ul class="space-y-4 text-stone-400 text-sm">
@@ -631,8 +590,6 @@
                         <li><a href="#" class="hover:text-citron-primary transition">Partner Login</a></li>
                     </ul>
                 </div>
-
-                <!-- Legal Column -->
                 <div>
                     <h5 class="font-bold text-white mb-8 text-lg">Legal</h5>
                     <ul class="space-y-4 text-stone-400 text-sm">
@@ -642,8 +599,6 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- Bottom Bar -->
             <div class="pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center text-[11px] font-bold text-stone-500 uppercase tracking-widest">
                 <div class="flex items-center space-x-8 mb-6 md:mb-0">
                     <p>&copy; 2026 KSR. All rights reserved.</p>
@@ -663,9 +618,7 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
 
@@ -673,13 +626,10 @@
         let currentIndex = 0;
         const track = document.getElementById('impact-carousel');
         const indicators = document.querySelectorAll('#carousel-indicators .indicator-dot');
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const totalCards = 3;
+        const totalCards = 2;
 
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
             indicators.forEach((ind, idx) => {
                 if(idx === currentIndex) {
                     ind.classList.add('active', 'w-12');
@@ -691,30 +641,15 @@
             });
         }
 
-        nextBtn.addEventListener('click', () => {
+        document.getElementById('next-btn').addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % totalCards;
             updateCarousel();
-            resetInterval();
         });
 
-        prevBtn.addEventListener('click', () => {
+        document.getElementById('prev-btn').addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + totalCards) % totalCards;
             updateCarousel();
-            resetInterval();
         });
-
-        let carouselInterval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalCards;
-            updateCarousel();
-        }, 5000);
-
-        function resetInterval() {
-            clearInterval(carouselInterval);
-            carouselInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalCards;
-                updateCarousel();
-            }, 5000);
-        }
 
         updateCarousel();
     </script>
