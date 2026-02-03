@@ -10,38 +10,39 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #292524; 
+            color: #1e293b;
+            background-color: #fcfcfc;
         }
-        /* Citron / Lime Color Palette */
-        .text-citron-primary { color: #84cc16; }
-        .bg-citron-primary { background-color: #84cc16; }
-        .border-citron-primary { border-color: #84cc16; }
-        .bg-citron-soft { background-color: #f7fee7; }
-        .text-citron-dark { color: #4d7c0f; }
+        
+        /* New Color Palette: Midnight Slate & Gold */
+        .text-brand-primary { color: #0f172a; }
+        .bg-brand-primary { background-color: #0f172a; }
+        .text-accent-gold { color: #d97706; }
+        .bg-accent-gold { background-color: #d97706; }
+        .border-accent-gold { border-color: #d97706; }
 
-        /* Floating Nav Styles */
-        .navbar-pill {
-            background-color: #f2ece0;
-            border-radius: 9999px;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+        /* iOS-style Glassmorphism */
+        .glass-ios {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
         }
 
         /* Topography Texture Background */
-        .impact-section-bg {
-            background-color: #fafaf9;
+        .texture-bg {
             background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); 
-            position: relative;
+            background-attachment: fixed;
         }
 
-        .gradient-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(132, 204, 22, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Carousel strictly one card */
+        /* Carousel Styles */
         .carousel-track {
             display: flex;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
@@ -53,20 +54,18 @@
             padding: 0 20px;
         }
         
-        /* Premium Vertical Card */
         .impact-card {
             width: 100%;
             max-width: 480px;
             height: 600px;
             background: white;
-            border-radius: 32px;
-            border: 1px solid #e7e5e4;
+            border-radius: 40px;
+            border: 1px solid #f1f5f9;
             padding: 60px 50px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease;
+            box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.1);
         }
 
         .data-number {
@@ -74,221 +73,145 @@
             font-weight: 900;
             line-height: 1;
             letter-spacing: -0.05em;
-            color: #1c1917;
+            color: #0f172a;
             display: block;
-            margin-bottom: 0.5rem;
         }
 
-        .verified-badge {
-            background: #fff;
-            border: 1px solid #d6d3d1;
-            color: #78716c;
-            padding: 6px 16px;
-            border-radius: 99px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            display: flex;
-            align-items: center;
-        }
-
-        .verified-badge i {
-            color: #84cc16;
-            margin-right: 6px;
-        }
-
-        /* REDESIGNED "How We Work" Path Styles */
-        .work-path-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, #84cc16 10%, #84cc16 90%, transparent);
-            transform: translateX(-50%);
-        }
-
-        .stage-card {
-            background: white;
-            border-radius: 32px;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 30px -5px rgba(0, 0, 0, 0.03);
-            transition: all 0.5s ease;
-        }
-        .stage-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(132, 204, 22, 0.15);
-            border-color: rgba(132, 204, 22, 0.3);
-        }
-
-        .stage-number-bespoke {
-            font-size: 1.5rem;
-            font-weight: 900;
-            width: 60px;
-            height: 60px;
-            background: #1c1917;
-            color: #84cc16;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
-        }
-
-        /* Partner Section Specifics */
-        .partner-card-gradient {
-            background: linear-gradient(135deg, #fefce8 0%, #f7fee7 50%, #ecfccb 100%);
+        /* How we Work: Unique Card Styling */
+        .work-step-container {
             position: relative;
+            z-index: 1;
+        }
+        .work-card {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .work-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.15);
+        }
+        .step-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: #0f172a;
+            color: #fff;
+            width: fit-content;
         }
 
-        .partner-card-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.05;
-            background-image: url("https://www.transparenttextures.com/patterns/topography.png");
-            pointer-events: none;
-        }
+        /* Rotation Animations */
+        @keyframes rotate-clockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotate-anticlockwise { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+        .animate-clockwise { animation: rotate-clockwise 60s linear infinite; }
+        .animate-anticlockwise { animation: rotate-anticlockwise 45s linear infinite; }
 
-        /* Indicators */
-        .indicator-dot {
-            height: 4px;
-            border-radius: 2px;
-            background-color: #d6d3d1;
-            transition: all 0.5s ease;
-        }
-        .indicator-dot.active {
-            background-color: #84cc16;
-            width: 40px;
-        }
-
-        /* Partner Section Animations */
-        @keyframes rotate-clockwise {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes rotate-anticlockwise {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
-        @keyframes counter-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
-        }
-        @keyframes counter-rotate-anti {
-            from { transform: rotate(-360deg); }
-            to { transform: rotate(0deg); }
-        }
-
-        .animate-clockwise { animation: rotate-clockwise 40s linear infinite; }
-        .animate-anticlockwise { animation: rotate-anticlockwise 30s linear infinite; }
-        .animate-counter { animation: counter-rotate 40s linear infinite; }
-        .animate-counter-anti { animation: counter-rotate-anti 30s linear infinite; }
-
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fafaf9; }
-        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #84cc16; }
-
-        @media (max-width: 1024px) {
-            .work-path-line { left: 40px; }
-        }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0f172a; }
     </style>
 </head>
-<body class="bg-[#fafaf9]"> 
+<body class="texture-bg"> 
 
     <!-- Header / Nav Bar -->
-    <div class="fixed top-0 w-full z-50 px-4 pt-6">
-        <header class="container mx-auto navbar-pill px-8 h-16 flex items-center justify-between max-w-5xl">
+    <div class="fixed top-0 w-full z-50 px-4 pt-8">
+        <header class="container mx-auto glass-ios px-10 h-20 flex items-center justify-between max-w-5xl shadow-2xl shadow-slate-900/10">
             <div class="flex items-center">
-                <span class="text-lg font-black tracking-tighter text-stone-900 uppercase">KSR</span>
+                <span class="text-2xl font-black tracking-tighter text-slate-900">KSR</span>
             </div>
             
-            <nav class="hidden lg:flex space-x-10 text-[13px] font-bold text-stone-900">
-                <a href="#" class="hover:text-citron-dark transition">Home</a>
-                <a href="#how-we-work-section" class="hover:text-citron-dark transition">How It Works</a>
-                <a href="#partner-section" class="hover:text-citron-dark transition">NGOs</a>
-                <a href="#impact" class="hover:text-citron-dark transition">Impact</a>
-                <a href="#footer" class="hover:text-citron-dark transition">About</a>
+            <nav class="hidden lg:flex space-x-12 text-[16px] font-bold text-slate-700">
+                <a href="#" class="hover:text-brand-primary transition relative group">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#impact" class="hover:text-brand-primary transition relative group">
+                    Impact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#how-we-work-section" class="hover:text-brand-primary transition relative group">
+                    Workflow
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#success" class="text-brand-primary border-b-2 border-brand-primary">Success</a>
             </nav>
 
             <div class="flex items-center">
-                <a href="#" class="bg-black text-white px-6 py-2.5 rounded-full text-[11px] font-bold tracking-wider hover:bg-stone-800 transition uppercase shadow-xl shadow-black/10">
-                    Login/Sign Up
+                <a href="#" class="bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-black tracking-widest hover:bg-slate-800 transition shadow-lg">
+                    DASHBOARD
                 </a>
             </div>
         </header>
     </div>
 
     <!-- 1. Hero Section -->
-    <section class="pt-48 pb-20 overflow-hidden bg-white relative">
+    <section class="pt-60 pb-32 overflow-hidden relative">
         <div class="container mx-auto px-6 relative">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
                 <div class="lg:w-1/2">
-                    <div class="inline-flex items-center space-x-2 text-sm font-medium text-citron-dark bg-citron-soft px-3 py-1 rounded-full mb-6 border border-lime-100">
-                        <span class="flex h-2 w-2 rounded-full bg-lime-500 animate-pulse"></span>
-                        <span>Trusted by 50+ Corporates for Social Good</span>
+                    <div class="inline-flex items-center space-x-3 text-xs font-bold text-slate-600 bg-slate-100 px-4 py-2 rounded-full mb-8">
+                        <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-ping"></span>
+                        <span class="uppercase tracking-widest">Global Institutional Standards</span>
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black text-stone-900 leading-[1.1] mb-8">
-                        India's Premier <span class="text-citron-primary">CSR</span><br>Execution Platform
+                    <h1 class="text-6xl lg:text-8xl font-black text-slate-900 leading-[0.95] mb-8 tracking-tighter">
+                        Premier <span class="text-accent-gold italic">CSR</span><br>Execution.
                     </h1>
                     
-                    <div class="flex flex-wrap items-center gap-6 mb-10">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-6 h-6 rounded-full bg-citron-primary flex items-center justify-center text-white shadow-sm shadow-lime-200">
-                                <i class="fas fa-check text-[10px]"></i>
-                            </div>
-                            <span class="text-stone-700 font-bold text-sm tracking-tight">100% CSR Act Compliant</span>
+                    <div class="flex flex-wrap items-center gap-8 mb-12">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-certificate text-accent-gold text-lg"></i>
+                            <span class="text-slate-800 font-bold text-sm tracking-tight">CSR Act 2013 Compliant</span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <div class="w-6 h-6 rounded-full bg-citron-primary flex items-center justify-center text-white shadow-sm shadow-lime-200">
-                                <i class="fas fa-shield-alt text-[10px]"></i>
-                            </div>
-                            <span class="text-stone-700 font-bold text-sm tracking-tight">Bank-Grade Security</span>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-lock text-slate-400 text-lg"></i>
+                            <span class="text-slate-800 font-bold text-sm tracking-tight">Bank-Grade Escrow</span>
                         </div>
                     </div>
 
-                    <p class="text-lg text-stone-600 mb-10 max-w-lg leading-relaxed">
-                        Connect with verified NGOs, protect funds through escrow, and generate audit-ready compliance reports—all in one platform.
+                    <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed font-medium">
+                        Seamlessly connect with verified NGOs, protect allocations through escrow, and generate audit-ready compliance reports.
                     </p>
 
-                    <div class="flex flex-wrap gap-4 mb-10">
-                        <button class="bg-citron-primary text-white px-10 py-4 rounded-full font-black hover:bg-lime-600 transition flex items-center shadow-xl shadow-lime-200">
-                            Get Started
+                    <div class="flex flex-wrap gap-6">
+                        <button class="bg-slate-900 text-white px-12 py-5 rounded-full font-black text-sm tracking-widest hover:bg-slate-800 transition shadow-2xl">
+                            GET STARTED
                         </button>
-                        <button class="bg-white border-2 border-citron-primary text-citron-dark px-10 py-4 rounded-full font-black hover:bg-citron-soft transition">
-                            More Info.
+                        <button class="bg-white border-2 border-slate-200 text-slate-900 px-12 py-5 rounded-full font-black text-sm tracking-widest hover:border-slate-900 transition">
+                            MORE INFO.
                         </button>
                     </div>
                 </div>
 
-                <!-- Dashboard Mockup -->
                 <div class="lg:w-1/2 relative">
-                    <div class="bg-stone-100/50 rounded-[40px] p-4 lg:p-8 border border-stone-200 shadow-2xl relative backdrop-blur-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <h4 class="font-bold text-stone-800 tracking-tight">Impact Portfolio</h4>
-                            <span class="bg-lime-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">LIVE IMPACT</span>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="hero-dashboard-card bg-white p-6 rounded-2xl shadow-sm">
-                                <p class="text-[10px] text-stone-400 font-bold uppercase mb-1 tracking-widest">Total CSR Fund</p>
-                                <p class="text-2xl font-black text-stone-900">₹2.4Cr</p>
-                            </div>
-                            <div class="hero-dashboard-card bg-white p-6 rounded-2xl shadow-sm border-l-4 border-l-citron-primary">
-                                <p class="text-[10px] text-stone-400 font-bold uppercase mb-1 tracking-widest">Deployed</p>
-                                <p class="text-2xl font-black text-stone-900">₹1.8Cr</p>
+                    <div class="bg-white rounded-[50px] p-10 border border-slate-200 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.15)] relative">
+                        <div class="flex justify-between items-center mb-10">
+                            <h4 class="font-black text-slate-900 uppercase tracking-widest text-xs">Live Portfolio</h4>
+                            <div class="flex space-x-1">
+                                <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
                             </div>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-2xl shadow-sm">
-                            <div class="flex justify-between items-center mb-3">
-                                <p class="text-xs font-bold text-stone-500">Milestone Progress</p>
-                                <p class="text-xs font-bold text-citron-dark">75% Complete</p>
+                        <div class="grid grid-cols-2 gap-6 mb-10">
+                            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Available Fund</p>
+                                <p class="text-3xl font-black text-slate-900">₹2.4Cr</p>
                             </div>
-                            <div class="w-full bg-stone-100 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-citron-primary h-full w-3/4 transition-all duration-1000"></div>
+                            <div class="bg-slate-900 p-8 rounded-3xl shadow-xl shadow-slate-900/20">
+                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Impact Deployed</p>
+                                <p class="text-3xl font-black text-white">₹1.8Cr</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100">
+                            <div class="flex justify-between items-center mb-4">
+                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Milestone Audit</p>
+                                <p class="text-xs font-black text-accent-gold">75%</p>
+                            </div>
+                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                <div class="bg-accent-gold h-full w-3/4"></div>
                             </div>
                         </div>
                     </div>
@@ -298,55 +221,72 @@
     </section>
 
     <!-- 2. Meaningful Impact Section -->
-    <section id="impact" class="py-24 bg-white">
+    <section id="impact" class="py-32 bg-white">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row lg:items-stretch gap-16">
-                <div class="lg:w-1/2 relative">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl relative group h-full">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Students" class="w-full h-full object-cover filter sepia-[0.1]">
-                        <div class="absolute inset-0 bg-lime-900/10 group-hover:bg-lime-900/0 transition"></div>
-                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur p-5 rounded-2xl flex items-center justify-between border border-stone-100 shadow-2xl">
+            <div class="flex flex-col lg:flex-row lg:items-stretch gap-20">
+                
+                <!-- Video on Left (Height Aligned) -->
+                <div class="lg:w-1/2 relative min-h-[500px]">
+                    <div class="rounded-[60px] overflow-hidden shadow-2xl relative group h-full border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Education" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-slate-900/10"></div>
+                        <div class="absolute bottom-10 left-10 right-10 glass-ios p-8 rounded-[40px] flex items-center justify-between border border-white shadow-2xl">
                             <div>
-                                <p class="text-xs font-bold text-lime-600 uppercase tracking-wider">KSR Impact Story</p>
-                                <p class="font-bold text-stone-900 text-lg">Solar Power for Rural Clinics</p>
+                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">On-Ground Action</p>
+                                <p class="font-black text-slate-900 text-xl">Impact Genesis</p>
                             </div>
-                            <button class="w-12 h-12 bg-citron-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-lime-200 transition-transform hover:scale-110"><i class="fas fa-play"></i></button>
+                            <button class="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"><i class="fas fa-play text-xs"></i></button>
                         </div>
                     </div>
                 </div>
+
+                <!-- 4 Specific Content Boxes on Right -->
                 <div class="lg:w-1/2 flex flex-col justify-center">
-                    <p class="text-citron-dark font-bold text-sm uppercase mb-3 tracking-widest">Meaningful Impact</p>
-                    <h2 class="text-4xl font-extrabold text-stone-900 mb-6 leading-tight">Transparent Execution,<br>Measurable Outcomes</h2>
-                    <p class="text-stone-600 mb-10 leading-relaxed text-lg">
-                        We don't just facilitate donations; we ensure execution. Every project is tracked from inception to impact, providing you with real-time visibility.
-                    </p>
+                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Proven Outcomes</p>
+                    <h2 class="text-5xl lg:text-6xl font-black text-slate-900 mb-10 leading-tight tracking-tighter">Transparent Execution,<br>Measurable Impact.</h2>
                     
-                    <div class="grid gap-4">
-                        <div class="bg-[#fafaf9] p-5 rounded-2xl border border-stone-100 flex items-center justify-between hover:border-lime-200 transition group cursor-pointer shadow-sm">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-white shadow-sm text-blue-500 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-500 group-hover:text-white transition"><i class="fas fa-graduation-cap"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-stone-800">Education</h4>
-                                    <p class="text-xs text-stone-500">45 verified projects</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm font-bold text-stone-800">2.5L+</p>
-                                <p class="text-[10px] text-stone-400 font-bold uppercase">Students</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Education -->
+                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-book-open"></i></div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Education</h4>
+                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">45 Verified Active Projects</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="text-3xl font-black text-slate-900 tracking-tighter">2.5L+</span>
+                                <span class="text-[10px] font-black text-slate-400 uppercase">Students</span>
                             </div>
                         </div>
-                        <!-- Additional categories as per previous design -->
-                        <div class="bg-[#fafaf9] p-5 rounded-2xl border border-stone-100 flex items-center justify-between hover:border-lime-200 transition group cursor-pointer shadow-sm">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-white shadow-sm text-citron-primary rounded-lg flex items-center justify-center mr-4 group-hover:bg-citron-primary group-hover:text-white transition"><i class="fas fa-heartbeat"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-stone-800">Healthcare</h4>
-                                    <p class="text-xs text-stone-500">32 verified projects</p>
-                                </div>
+
+                        <!-- Healthcare -->
+                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-heart-pulse"></i></div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Healthcare</h4>
+                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">32 Verified Active Projects</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+</span>
+                                <span class="text-[10px] font-black text-slate-400 uppercase">Lives</span>
                             </div>
-                            <div class="text-right">
-                                <p class="text-sm font-bold text-stone-800">1.8L+</p>
-                                <p class="text-[10px] text-stone-400 font-bold uppercase">Lives</p>
+                        </div>
+
+                        <!-- Environment -->
+                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-seedling"></i></div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Environment</h4>
+                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">28 Verified Active Projects</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="text-3xl font-black text-slate-900 tracking-tighter">3.2k+</span>
+                                <span class="text-[10px] font-black text-slate-400 uppercase">MT CO2</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill Development -->
+                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-tools"></i></div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Skills</h4>
+                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">26 Verified Active Projects</p>
+                            <div class="flex items-baseline space-x-2">
+                                <span class="text-3xl font-black text-slate-900 tracking-tighter">15k+</span>
+                                <span class="text-[10px] font-black text-slate-400 uppercase">Youth</span>
                             </div>
                         </div>
                     </div>
@@ -355,79 +295,71 @@
         </div>
     </section>
 
-    <!-- 3. HOW WE WORK: TARGETED REDESIGN -->
-    <section id="how-we-work-section" class="py-40 bg-[#fafaf9] relative overflow-hidden">
-        <div class="container mx-auto px-6 relative">
+    <!-- 3. HOW WE WORK: Premium Bespoke Design -->
+    <section id="how-we-work-section" class="py-40 bg-slate-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-32">
-                <p class="text-citron-primary font-black text-xs uppercase mb-4 tracking-[0.6em]">The Protocol</p>
-                <h2 class="text-5xl lg:text-7xl font-black text-stone-900 tracking-tighter">How we Work?</h2>
+                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Execution Blueprint</p>
+                <h2 class="text-6xl lg:text-8xl font-black text-white tracking-tighter leading-none mb-10">How we Work?</h2>
+                <div class="w-20 h-1 bg-accent-gold mx-auto"></div>
             </div>
 
-            <!-- Bespoke Vertical Path Layout -->
-            <div class="relative max-w-5xl mx-auto">
-                <div class="work-path-line"></div>
-
-                <!-- Stage 01 -->
-                <div class="relative flex flex-col lg:flex-row items-center justify-between mb-32 group">
-                    <div class="lg:w-5/12 text-right hidden lg:block pr-20">
-                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity">CORPORATE</p>
-                    </div>
-                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
-                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">01</div>
-                    </div>
-                    <div class="lg:w-5/12 lg:pl-20">
-                        <div class="stage-card p-10 relative overflow-hidden">
-                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-citron-soft/30 rounded-full blur-2xl"></div>
-                            <h4 class="text-2xl font-black text-stone-900 mb-4">Mandate Definition</h4>
-                            <p class="text-stone-500 leading-relaxed font-medium">Corporates establish their specific CSR goals, geographic requirements, and budgetary frameworks through our compliant gateway.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Step 01 -->
+                <div class="work-step-container">
+                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-slate-900/40 rounded-full blur-3xl"></div>
+                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">01</span>
+                        <div class="step-tag mb-10">STAGE 01</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Corporates Register Goals</h4>
+                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Establish specific CSR focus areas, geographic priorities, and budget frameworks through our secure dashboard.</p>
+                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
+                            <span>Initial Audit</span>
+                            <div class="flex-1 h-px bg-slate-800"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stage 02 -->
-                <div class="relative flex flex-col lg:flex-row-reverse items-center justify-between mb-32 group">
-                    <div class="lg:w-5/12 text-left hidden lg:block pl-20">
-                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity uppercase">NGO Audit</p>
-                    </div>
-                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
-                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">02</div>
-                    </div>
-                    <div class="lg:w-5/12 lg:pr-20">
-                        <div class="stage-card p-10 relative overflow-hidden border-t-citron-primary">
-                            <h4 class="text-2xl font-black text-stone-900 mb-4">Rigorous Verification</h4>
-                            <p class="text-stone-500 leading-relaxed font-medium">Implementation partners undergo a deep 4-layer due diligence including 12A/80G status, past impact audits, and on-ground capacity checks.</p>
+                <!-- Step 02 -->
+                <div class="work-step-container lg:mt-24">
+                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden border-t-accent-gold">
+                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">02</span>
+                        <div class="step-tag mb-10">STAGE 02</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">NGO Partner Verification</h4>
+                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Implementation partners undergo deep 4-layer due diligence including 12A/80G status and historical impact audits.</p>
+                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
+                            <span>KYC/Compliance</span>
+                            <div class="flex-1 h-px bg-slate-800"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stage 03 -->
-                <div class="relative flex flex-col lg:flex-row items-center justify-between mb-32 group">
-                    <div class="lg:w-5/12 text-right hidden lg:block pr-20">
-                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity">AI MATCH</p>
-                    </div>
-                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
-                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">03</div>
-                    </div>
-                    <div class="lg:w-5/12 lg:pl-20">
-                        <div class="stage-card p-10 relative overflow-hidden">
-                            <h4 class="text-2xl font-black text-stone-900 mb-4">Ecosystem Alignment</h4>
-                            <p class="text-stone-500 leading-relaxed font-medium">Our proprietary algorithm pairs corporate budgets with the highest-impact NGO projects, optimizing for both social ROI and local compliance.</p>
+                <!-- Step 03 -->
+                <div class="work-step-container">
+                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden">
+                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">03</span>
+                        <div class="step-tag mb-10">STAGE 03</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">AI Matching & Alignment</h4>
+                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Our proprietary matching engine pairs budgets with the most effective local initiatives for maximum social ROI.</p>
+                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
+                            <span>Optimization</span>
+                            <div class="flex-1 h-px bg-slate-800"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stage 04 -->
-                <div class="relative flex flex-col lg:flex-row-reverse items-center justify-between group">
-                    <div class="lg:w-5/12 text-left hidden lg:block pl-20">
-                        <p class="text-stone-300 font-black text-6xl opacity-20 group-hover:opacity-40 transition-opacity uppercase">Reporting</p>
-                    </div>
-                    <div class="z-10 flex items-center justify-center mb-8 lg:mb-0">
-                        <div class="stage-number-bespoke group-hover:scale-110 group-hover:bg-citron-primary group-hover:text-white transition-all duration-500">04</div>
-                    </div>
-                    <div class="lg:w-5/12 lg:pr-20">
-                        <div class="stage-card p-10 relative overflow-hidden border-t-citron-primary">
-                            <h4 class="text-2xl font-black text-stone-900 mb-4">Milestone Impact</h4>
-                            <p class="text-stone-500 leading-relaxed font-medium">Funds are released via escrow only upon verified milestone completion, concluding with automated, audit-ready compliance reporting.</p>
+                <!-- Step 04 -->
+                <div class="work-step-container lg:mt-24">
+                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden border-t-accent-gold">
+                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">04</span>
+                        <div class="step-tag mb-10">STAGE 04</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Impact Audit & Reporting</h4>
+                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Live tracking of every rupee via escrow, concluding with automated, audit-ready regulatory reporting.</p>
+                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
+                            <span>Final Filings</span>
+                            <div class="flex-1 h-px bg-slate-800"></div>
                         </div>
                     </div>
                 </div>
@@ -436,122 +368,104 @@
     </section>
 
     <!-- 4. Institutional Success (Impact Created) -->
-    <section id="success" class="py-32 impact-section-bg overflow-hidden">
+    <section id="success" class="py-32 impact-section-bg overflow-hidden relative">
         <div class="gradient-overlay"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-20">
-                <p class="text-citron-primary font-black text-xs uppercase mb-4 tracking-[0.3em]">Institutional Success</p>
-                <h2 class="text-5xl lg:text-7xl font-black text-stone-900 mb-6">Impact Created</h2>
-                <div class="w-24 h-1.5 bg-citron-primary mx-auto rounded-full"></div>
-            </div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Validation</p>
+            <h2 class="text-6xl font-black text-slate-900 mb-20 tracking-tighter">Impact Created.</h2>
             
             <div class="carousel-container overflow-visible">
                 <div class="carousel-track" id="impact-carousel">
-                    <!-- LG India -->
+                    <!-- Case Study 1 -->
                     <div class="carousel-card-wrapper">
-                        <div class="impact-card">
+                        <div class="impact-card group hover:scale-[1.02] transition-transform">
                             <div class="flex justify-between items-start">
                                 <div class="text-left">
-                                    <p class="text-[11px] font-black text-stone-400 uppercase tracking-widest mb-1">Corporate Partner</p>
-                                    <h3 class="text-xl font-extrabold text-stone-900">LG Electronics India</h3>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Corporate Partner</p>
+                                    <h3 class="text-xl font-black text-slate-900 uppercase">LG Electronics India</h3>
                                 </div>
-                                <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-900 shadow-sm"><i class="fas fa-shield-check"></i></div>
                             </div>
-                            
                             <div class="text-left py-10">
                                 <span class="data-number">400+</span>
-                                <h4 class="text-3xl font-black text-stone-900 leading-tight">Units of Blood Collected Across India</h4>
+                                <h4 class="text-2xl font-black text-slate-900 leading-tight">Units of Blood Collected Across India</h4>
                             </div>
-
-                            <div class="text-left pt-8 border-t border-stone-100">
-                                <p class="text-stone-500 text-sm leading-relaxed mb-6">
-                                    Strategic execution of emergency blood donation drives, ensuring end-to-end regulatory compliance and institutional impact reporting.
-                                </p>
-                                <div class="flex items-center text-xs font-black text-stone-900 uppercase tracking-widest group cursor-pointer hover:text-citron-dark transition">
-                                    View Full Case Study <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
-                                </div>
+                            <div class="text-left pt-10 border-t border-slate-100">
+                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">End-to-end execution of massive blood donation drives ensuring full institutional compliance.</p>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">View Full Report</button>
                             </div>
                         </div>
                     </div>
-                    <!-- PNB Bank -->
+                    <!-- Case Study 2 -->
                     <div class="carousel-card-wrapper">
-                        <div class="impact-card">
+                        <div class="impact-card group hover:scale-[1.02] transition-transform">
                             <div class="flex justify-between items-start">
                                 <div class="text-left">
-                                    <p class="text-[11px] font-black text-stone-400 uppercase tracking-widest mb-1">Corporate Partner</p>
-                                    <h3 class="text-xl font-extrabold text-stone-900">Punjab National Bank</h3>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Corporate Partner</p>
+                                    <h3 class="text-xl font-black text-slate-900 uppercase">PNB Bank</h3>
                                 </div>
-                                <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-900 shadow-sm"><i class="fas fa-shield-check"></i></div>
                             </div>
-                            
                             <div class="text-left py-10">
                                 <span class="data-number">70+</span>
-                                <h4 class="text-3xl font-black text-stone-900 leading-tight">Women Trained for Financial Literacy</h4>
+                                <h4 class="text-2xl font-black text-slate-900 leading-tight">Women Trained for Financial Literacy</h4>
                             </div>
-
-                            <div class="text-left pt-8 border-t border-stone-100">
-                                <p class="text-stone-500 text-sm leading-relaxed mb-6">
-                                    Empowering rural self-help groups through micro-finance workshops and digital entrepreneurship training.
-                                </p>
-                                <div class="flex items-center text-xs font-black text-stone-900 uppercase tracking-widest group cursor-pointer hover:text-citron-dark transition">
-                                    View Full Case Study <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
-                                </div>
+                            <div class="text-left pt-10 border-t border-slate-100">
+                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Upskilling rural self-help groups with digital finance and entrepreneurship workshops.</p>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">View Full Report</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex flex-col items-center mt-16 space-y-8">
+            <div class="flex justify-center items-center mt-20 space-x-8">
+                <button id="prev-btn" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><i class="fas fa-arrow-left"></i></button>
                 <div class="flex space-x-3" id="carousel-indicators">
                     <div class="indicator-dot active w-12" data-index="0"></div>
                     <div class="indicator-dot w-4" data-index="1"></div>
                 </div>
-                
-                <div class="flex items-center space-x-12">
-                    <button id="prev-btn" class="text-stone-400 hover:text-citron-primary transition-colors flex items-center font-black text-xs uppercase tracking-widest">
-                        <i class="fas fa-arrow-left mr-3"></i> Previous
-                    </button>
-                    <button id="next-btn" class="text-stone-400 hover:text-citron-primary transition-colors flex items-center font-black text-xs uppercase tracking-widest">
-                        Next <i class="fas fa-arrow-right ml-3"></i>
-                    </button>
-                </div>
+                <button id="next-btn" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
     </section>
 
     <!-- 5. Become Our Partner Section -->
-    <section id="partner-section" class="py-32 bg-white relative overflow-hidden">
+    <section id="partner-section" class="py-32 bg-slate-50 texture-bg border-y border-slate-100">
         <div class="container mx-auto px-6 relative">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-20">
+                
                 <div class="w-full lg:w-1/2 max-w-xl">
-                    <div class="partner-card-gradient p-10 lg:p-14 rounded-[40px] shadow-2xl relative overflow-hidden border border-stone-100">
+                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative overflow-hidden border border-slate-100">
                         <div class="partner-card-pattern"></div>
                         <div class="relative z-10">
-                            <h2 class="text-4xl font-black text-citron-dark mb-2">Become Our Partner:</h2>
-                            <p class="text-xl font-bold text-stone-800 mb-10">Get Yourself On Board:</p>
-                            <form class="space-y-8">
-                                <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Organisation Name">
-                                <input type="text" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Applicant Name">
-                                <input type="tel" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="Phone Number">
-                                <input type="email" class="w-full bg-transparent border-b-2 border-stone-800 py-2 focus:border-citron-dark outline-none transition text-stone-900 placeholder:text-stone-500 font-medium" placeholder="E-Mail ID">
-                                <p class="text-xs text-stone-600 leading-relaxed font-medium">Join a network of visionary organizations. By partnering with KSR, you ensure your social initiatives are backed by bank-grade security and radical transparency.</p>
-                                <button type="submit" class="bg-citron-primary hover:bg-lime-600 text-white font-black px-12 py-3 rounded-full shadow-lg transition-transform hover:scale-105">Submit</button>
+                            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Join the Ecosystem.</h2>
+                            <p class="text-slate-500 font-bold mb-12 uppercase tracking-widest text-[10px]">Strategic Partnership Onboarding</p>
+                            
+                            <form class="space-y-10">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
+                                <input type="tel" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
+                                <input type="email" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
+                                
+                                <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl transition-transform hover:scale-105 tracking-widest text-xs">
+                                    SUBMIT REQUEST
+                                </button>
                             </form>
                         </div>
-                        <div class="absolute -right-20 -bottom-20 w-64 h-64 border-[30px] border-citron-primary/10 rounded-full"></div>
                     </div>
                 </div>
 
                 <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[500px]">
                     <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center">
-                        <div class="absolute w-full h-full border-2 border-dashed border-stone-200 rounded-full animate-clockwise">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter"><i class="fas fa-building text-citron-dark"></i></div>
+                        <div class="absolute w-full h-full border border-dashed border-slate-300 rounded-full animate-clockwise">
+                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-building"></i></div>
+                            <div class="absolute top-1/2 -right-7 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-industry"></i></div>
                         </div>
-                        <div class="absolute w-[65%] h-[65%] border-2 border-dashed border-stone-200 rounded-full animate-anticlockwise">
-                            <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-stone-100 flex items-center justify-center animate-counter-anti"><i class="fas fa-hand-holding-heart text-citron-primary"></i></div>
+                        <div class="absolute w-[65%] h-[65%] border border-dashed border-slate-300 rounded-full animate-anticlockwise">
+                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-accent-gold"><i class="fas fa-hand-holding-heart"></i></div>
                         </div>
-                        <div class="absolute w-[30%] h-[30%] bg-citron-primary rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
+                        <div class="absolute w-[30%] h-[30%] bg-slate-900 rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
                     </div>
                 </div>
             </div>
@@ -559,61 +473,50 @@
     </section>
 
     <!-- 6. Footer (Black Theme) -->
-    <footer id="footer" class="bg-black text-white pt-24 pb-12 border-t border-stone-800">
+    <footer id="footer" class="bg-black text-white pt-24 pb-12">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-20">
                 <div>
-                    <div class="mb-8">
-                        <span class="text-2xl font-black tracking-tighter uppercase">KSR</span>
-                    </div>
-                    <p class="text-citron-primary font-black text-sm uppercase tracking-widest mb-4 italic">WHEN YOU THINK CSR, THINK KSR</p>
-                    <p class="text-stone-400 text-sm leading-relaxed mb-8 max-w-xs">India's trusted platform for transparent CSR execution and compliance management.</p>
-                    <div class="space-y-4 text-sm text-stone-400">
-                        <p class="flex items-center"><i class="far fa-envelope w-6 text-stone-500"></i> contact@ksr.org</p>
-                        <p class="flex items-center"><i class="fas fa-phone-alt w-6 text-stone-500"></i> +91 123 456 7890</p>
-                    </div>
+                    <div class="mb-10"><span class="text-3xl font-black tracking-tighter uppercase">KSR</span></div>
+                    <p class="text-accent-gold font-black text-xs uppercase tracking-[0.3em] mb-6 italic">WHEN YOU THINK CSR, THINK KSR</p>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-10 max-w-xs font-medium">India's trusted institutional platform for radical transparency in social impact.</p>
                 </div>
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg">Platform</h5>
-                    <ul class="space-y-4 text-stone-400 text-sm">
-                        <li><a href="#how-we-work-section" class="hover:text-citron-primary transition">How It Works</a></li>
-                        <li><a href="#partner-section" class="hover:text-citron-primary transition">Verified NGOs</a></li>
-                        <li><a href="#impact" class="hover:text-citron-primary transition">Impact Stories</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">Compliance</a></li>
+                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Platform</h5>
+                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
+                        <li><a href="#" class="hover:text-accent-gold transition">How It Works</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Verified NGOs</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Impact Analytics</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg">Partners</h5>
-                    <ul class="space-y-4 text-stone-400 text-sm">
-                        <li><a href="#" class="hover:text-citron-primary transition">For Corporates</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">For NGOs</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">Partner Login</a></li>
+                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Partners</h5>
+                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
+                        <li><a href="#" class="hover:text-accent-gold transition">For Corporates</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">For NGOs</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Legal Counsel</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg">Legal</h5>
-                    <ul class="space-y-4 text-stone-400 text-sm">
-                        <li><a href="#" class="hover:text-citron-primary transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-citron-primary transition">CSR Act Compliance</a></li>
+                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Legal</h5>
+                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
+                        <li><a href="#" class="hover:text-accent-gold transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Terms of Access</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">CSR-2 Compliance</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center text-[11px] font-bold text-stone-500 uppercase tracking-widest">
-                <div class="flex items-center space-x-8 mb-6 md:mb-0">
-                    <p>&copy; 2026 KSR. All rights reserved.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-lg"></i></a>
-                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-lg"></i></a>
-                    </div>
+            <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">
+                <p>&copy; 2026 KSR. National Infrastructure Initiative.</p>
+                <div class="flex space-x-10 mt-8 md:mt-0">
+                    <a href="#" class="hover:text-white transition">LINKEDIN</a>
+                    <a href="#" class="hover:text-white transition">TWITTER</a>
                 </div>
-                <p>A National CSR Infrastructure Initiative</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -632,25 +535,19 @@
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             indicators.forEach((ind, idx) => {
                 if(idx === currentIndex) {
-                    ind.classList.add('active', 'w-12');
-                    ind.classList.remove('w-4');
+                    ind.classList.add('active', 'w-12', 'bg-slate-900');
+                    ind.classList.remove('w-4', 'bg-slate-200');
                 } else {
-                    ind.classList.remove('active', 'w-12');
-                    ind.classList.add('w-4');
+                    ind.classList.remove('active', 'w-12', 'bg-slate-900');
+                    ind.classList.add('w-4', 'bg-slate-200');
                 }
             });
         }
 
-        document.getElementById('next-btn').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalCards;
-            updateCarousel();
-        });
+        document.getElementById('next-btn').addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalCards; updateCarousel(); });
+        document.getElementById('prev-btn').addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalCards) % totalCards; updateCarousel(); });
 
-        document.getElementById('prev-btn').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-            updateCarousel();
-        });
-
+        setInterval(() => { currentIndex = (currentIndex + 1) % totalCards; updateCarousel(); }, 7000);
         updateCarousel();
     </script>
 </body>
