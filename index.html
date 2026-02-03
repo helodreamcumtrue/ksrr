@@ -40,7 +40,16 @@
             background-attachment: fixed;
         }
 
-        /* Carousel Logic */
+        /* Dark Glass Cards for Workflow */
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        /* Impact Carousel Styles */
         .carousel-track {
             display: flex;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
@@ -52,33 +61,86 @@
             padding: 0 20px;
         }
         
+        /* Updated Wide Horizontal Card */
         .impact-card {
             width: 100%;
-            max-width: 480px;
-            height: 600px;
+            max-width: 1000px; /* Much wider */
             background: white;
             border-radius: 40px;
             border: 1px solid #f1f5f9;
-            padding: 60px 50px;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.1);
-        }
-
-        /* How we work section animations */
-        .work-card-premium {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-direction: row; /* Side by side */
+            box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.12);
             transition: all 0.4s ease;
         }
-        .work-card-premium:hover {
-            border-color: #d97706;
-            background: rgba(30, 41, 59, 0.7);
-            transform: translateY(-8px);
+
+        .impact-card-left {
+            width: 45%;
+            position: relative;
+            min-height: 500px;
         }
 
+        .impact-card-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        .impact-card-right {
+            width: 55%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .data-number {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            color: #0f172a;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .verified-badge {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .verified-badge i {
+            color: #d97706;
+            margin-right: 6px;
+        }
+
+        /* Indicators */
+        .indicator-dot {
+            height: 5px;
+            border-radius: 10px;
+            background-color: #cbd5e1;
+            transition: all 0.5s ease;
+            width: 12px;
+        }
+        .indicator-dot.active {
+            background-color: #0f172a;
+            width: 40px;
+        }
+
+        /* Rotation Animations */
         @keyframes rotate-clockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes rotate-anticlockwise { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         .animate-clockwise { animation: rotate-clockwise 60s linear infinite; }
@@ -88,6 +150,14 @@
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #0f172a; }
+
+        @media (max-width: 1024px) {
+            .impact-card { flex-direction: column; max-width: 500px; }
+            .impact-card-left, .impact-card-right { width: 100%; min-height: unset; }
+            .impact-card-left { height: 250px; }
+            .impact-card-right { padding: 40px; }
+            .data-number { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body class="texture-bg"> 
@@ -115,7 +185,7 @@
     </div>
 
     <!-- 1. Hero Section -->
-    <section class="pt-64 pb-32 overflow-hidden relative">
+    <section class="pt-64 pb-32 overflow-hidden bg-white relative">
         <div class="container mx-auto px-6 relative">
             <div class="flex flex-col lg:flex-row items-center gap-20">
                 <div class="lg:w-1/2">
@@ -139,7 +209,7 @@
                     </div>
 
                     <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed font-medium">
-                        A precision-engineered platform designed to eliminate friction in India's social impact landscape through transparency.
+                        A precision-engineered platform designed to eliminate friction in India's social impact landscape through radical transparency.
                     </p>
 
                     <div class="flex flex-wrap gap-6">
@@ -156,7 +226,7 @@
                             <span>Live</span>
                         </div>
                         <div class="grid grid-cols-2 gap-6 mb-10">
-                            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
                                 <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Total Fund</p>
                                 <p class="text-3xl font-black text-slate-900">₹2.4Cr</p>
                             </div>
@@ -167,7 +237,7 @@
                         </div>
                         <div class="bg-white p-8 rounded-3xl border border-slate-100">
                             <div class="flex justify-between items-center mb-4 text-xs font-black">
-                                <span class="text-slate-500">AUDIT SCORE</span>
+                                <span class="text-slate-500 uppercase tracking-widest">Audit score</span>
                                 <span class="text-accent-gold">75%</span>
                             </div>
                             <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
@@ -186,13 +256,13 @@
             <div class="flex flex-col lg:flex-row lg:items-stretch gap-20">
                 
                 <!-- Aligned Video Section -->
-                <div class="lg:w-1/2 relative">
+                <div class="lg:w-1/2 relative min-h-[500px]">
                     <div class="rounded-[60px] overflow-hidden shadow-2xl relative h-full border border-slate-100 bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Action" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Action" class="w-full h-full object-cover grayscale-[0.2] filter brightness-90">
                         <div class="absolute bottom-10 left-10 right-10 navbar-ios p-8 rounded-[40px] flex items-center justify-between border border-white shadow-2xl">
                             <div>
-                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Impact Story</p>
-                                <p class="font-black text-slate-900 text-xl">Execution Genesis</p>
+                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Impact Genesis</p>
+                                <p class="font-black text-slate-900 text-xl">Execution Video</p>
                             </div>
                             <button class="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"><i class="fas fa-play text-xs"></i></button>
                         </div>
@@ -201,26 +271,26 @@
 
                 <!-- 4 Content Boxes -->
                 <div class="lg:w-1/2 flex flex-col justify-center">
-                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Impact Metrics</p>
+                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Impact Verticals</p>
                     <h2 class="text-5xl lg:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Verified Results,<br>Transparent Execution.</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-book-open"></i></div>
                             <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Education</h4>
                             <p class="text-3xl font-black text-slate-900 tracking-tighter">2.5L+ <span class="text-[10px] text-slate-400 uppercase font-black">Students</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-heart-pulse"></i></div>
                             <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Healthcare</h4>
-                            <p class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+ <span class="text-[10px] text-slate-400 uppercase font-black">Lives Saved</span></p>
+                            <p class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+ <span class="text-[10px] text-slate-400 uppercase font-black">Lives</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-seedling"></i></div>
                             <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Environment</h4>
                             <p class="text-3xl font-black text-slate-900 tracking-tighter">3.2k <span class="text-[10px] text-slate-400 uppercase font-black">MT Offset</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-tools"></i></div>
                             <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Skill Dev.</h4>
                             <p class="text-3xl font-black text-slate-900 tracking-tighter">15k+ <span class="text-[10px] text-slate-400 uppercase font-black">Certified</span></p>
@@ -231,125 +301,123 @@
         </div>
     </section>
 
-    <!-- 3. HOW WE WORK: Midnight Redesign -->
+    <!-- 3. HOW WE WORK: Premium Bespoke Design -->
     <section id="how-we-work-section" class="py-40 bg-slate-950 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
         
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-32">
-                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Blueprint</p>
+                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Protocol</p>
                 <h2 class="text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none mb-10">How we Work?</h2>
                 <div class="w-20 h-1 bg-accent-gold mx-auto"></div>
             </div>
 
-            <!-- Staggered Layout with Premium Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 01 -->
                 <div class="lg:mb-12">
-                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
+                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
                         <span class="text-7xl font-black text-white/5 absolute top-6 right-10">01</span>
                         <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 01</div>
                         <h4 class="text-2xl font-black text-white mb-6 leading-tight">Corporate Registration</h4>
-                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
-                            Define your unique CSR focus areas, geographic priorities, and budget frameworks through our secure audited gateway.
-                        </p>
+                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Define your unique CSR focus areas, geographic priorities, and budget frameworks through our audited gateway.</p>
                     </div>
                 </div>
 
                 <!-- Step 02 -->
                 <div class="lg:mt-12">
-                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
+                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
                         <span class="text-7xl font-black text-white/5 absolute top-6 right-10">02</span>
                         <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 02</div>
                         <h4 class="text-2xl font-black text-white mb-6 leading-tight">NGO Partner Audit</h4>
-                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
-                            Implementing partners undergo a rigorous 4-layer due diligence, ensuring 12A/80G status and historical impact record.
-                        </p>
+                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Implementing partners undergo a deep 4-layer due diligence ensuring 12A/80G status and historical impact record.</p>
                     </div>
                 </div>
 
                 <!-- Step 03 -->
                 <div class="lg:mb-12">
-                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
+                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
                         <span class="text-7xl font-black text-white/5 absolute top-6 right-10">03</span>
                         <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 03</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Matching Ecosystem</h4>
-                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
-                            Our proprietary engine aligns corporate budgets with the most effective local NGO projects for maximum social impact ROI.
-                        </p>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Smart Matching Core</h4>
+                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Our proprietary engine aligns corporate budgets with the most effective local NGO projects for social ROI.</p>
                     </div>
                 </div>
 
                 <!-- Step 04 -->
                 <div class="lg:mt-12">
-                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
+                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
                         <span class="text-7xl font-black text-white/5 absolute top-6 right-10">04</span>
                         <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 04</div>
                         <h4 class="text-2xl font-black text-white mb-6 leading-tight">Verified Reporting</h4>
-                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
-                            Live milestone tracking via escrow, concluding with automated, audit-ready compliance reporting for statutory regulators.
-                        </p>
+                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Live milestone tracking via escrow, concluding with automated, audit-ready compliance reporting for statutory regulators.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Institutional Success -->
+    <!-- 4. Institutional Success: UPDATED WIDE HORIZONTAL LAYOUT -->
     <section id="success" class="py-32 impact-section-bg overflow-hidden relative">
         <div class="gradient-overlay"></div>
         <div class="container mx-auto px-6 relative z-10 text-center">
             <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Validation</p>
-            <h2 class="text-6xl font-black text-slate-900 mb-20 tracking-tighter">Impact Created.</h2>
+            <h2 class="text-6xl font-black text-slate-900 mb-24 tracking-tighter">Impact Created.</h2>
             
-            <div class="carousel-container overflow-visible">
+            <div class="carousel-container overflow-visible max-w-[1100px] mx-auto">
                 <div class="carousel-track" id="impact-carousel">
-                    <!-- LG -->
+                    <!-- LG (Wide Horizontal) -->
                     <div class="carousel-card-wrapper">
                         <div class="impact-card">
-                            <div class="flex justify-between items-start">
-                                <div class="text-left">
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"> Institutional Partner</p>
-                                    <h3 class="text-xl font-black text-slate-900 uppercase">LG Electronics India</h3>
+                            <!-- PHOTO ON LEFT -->
+                            <div class="impact-card-left">
+                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Blood Donation">
+                                <div class="absolute top-8 left-8 navbar-ios px-5 py-2 border-none shadow-none backdrop-blur-md">
+                                    <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Institutional Partner</p>
                                 </div>
-                                <div class="verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
+                                <div class="absolute top-8 right-8 verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
                             </div>
-                            <div class="text-left py-12">
-                                <span class="data-number">400+</span>
-                                <h4 class="text-2xl font-black text-slate-900 leading-tight">Units of Blood Collected Across India</h4>
-                            </div>
-                            <div class="text-left pt-10 border-t border-slate-100">
-                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Managing cross-country donation campaigns with full institutional transparency.</p>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">Read Report</button>
+                            <!-- TEXT ON RIGHT -->
+                            <div class="impact-card-right">
+                                <div class="mb-6">
+                                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">LG Electronics India</p>
+                                    <span class="data-number">400+</span>
+                                    <h4 class="text-2xl font-black text-slate-900 leading-tight mb-6">Units of Blood Collected Across India</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed mb-10 font-medium">Managed cross-country donation campaigns with full institutional transparency, reaching 5+ major hubs with end-to-end regulatory compliance.</p>
+                                </div>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1 w-fit hover:text-accent-gold transition">Full Case Study</button>
                             </div>
                         </div>
                     </div>
-                    <!-- PNB -->
+
+                    <!-- PNB (Wide Horizontal) -->
                     <div class="carousel-card-wrapper">
                         <div class="impact-card">
-                            <div class="flex justify-between items-start">
-                                <div class="text-left">
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Institutional Partner</p>
-                                    <h3 class="text-xl font-black text-slate-900 uppercase">PNB Bank</h3>
+                            <!-- PHOTO ON LEFT -->
+                            <div class="impact-card-left">
+                                <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=800&q=80" alt="Women Empowerment">
+                                <div class="absolute top-8 left-8 navbar-ios px-5 py-2 border-none shadow-none backdrop-blur-md">
+                                    <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Institutional Partner</p>
                                 </div>
-                                <div class="verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
+                                <div class="absolute top-8 right-8 verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
                             </div>
-                            <div class="text-left py-12">
-                                <span class="data-number">70+</span>
-                                <h4 class="text-2xl font-black text-slate-900 leading-tight">Women Trained for Financial Literacy</h4>
-                            </div>
-                            <div class="text-left pt-10 border-t border-slate-100">
-                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Upskilling rural self-help groups with digital selling and microfinance workshops.</p>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">Read Report</button>
+                            <!-- TEXT ON RIGHT -->
+                            <div class="impact-card-right">
+                                <div class="mb-6">
+                                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">Punjab National Bank</p>
+                                    <span class="data-number">70+</span>
+                                    <h4 class="text-2xl font-black text-slate-900 leading-tight mb-6">Women Trained for Financial Literacy</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed mb-10 font-medium">Upskilling rural self-help groups with digital selling and microfinance workshops, creating long-term economic sustainability.</p>
+                                </div>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1 w-fit hover:text-accent-gold transition">Full Case Study</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center items-center mt-20 space-x-12">
+            <div class="flex justify-center items-center mt-24 space-x-12">
                 <button id="prev-btn" class="text-slate-400 hover:text-slate-900 transition-all font-black text-xs uppercase tracking-widest"><i class="fas fa-arrow-left mr-3"></i> Prev</button>
-                <div class="flex space-x-4" id="carousel-indicators">
+                <div class="flex space-x-3" id="carousel-indicators">
                     <div class="indicator-dot active" data-index="0"></div>
                     <div class="indicator-dot" data-index="1"></div>
                 </div>
@@ -359,29 +427,32 @@
     </section>
 
     <!-- 5. Become Our Partner -->
-    <section id="partner-section" class="py-32 bg-slate-100 border-y border-slate-200 relative overflow-hidden">
-        <div class="container mx-auto px-6">
+    <section id="partner-section" class="py-32 bg-slate-50 texture-bg border-y border-slate-100">
+        <div class="container mx-auto px-6 relative">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-24">
                 <div class="w-full lg:w-1/2 max-w-xl">
-                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative border border-slate-200">
-                        <h2 class="text-4xl font-black text-slate-900 mb-12 tracking-tighter">Become Our Partner</h2>
-                        <form class="space-y-10">
-                            <input type="text" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
-                            <input type="text" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
-                            <input type="tel" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
-                            <input type="email" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
-                            <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl tracking-widest text-xs">SUBMIT REQUEST</button>
-                        </form>
+                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative overflow-hidden border border-slate-100">
+                        <div class="relative z-10">
+                            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Become Our Partner</h2>
+                            <p class="text-slate-500 font-bold mb-12 uppercase tracking-widest text-[10px]">Strategic Onboarding</p>
+                            <form class="space-y-10">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
+                                <input type="tel" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
+                                <input type="email" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
+                                <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl transition-transform hover:scale-105 tracking-widest text-xs">SUBMIT REQUEST</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[500px]">
+                <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[500px]">
                     <div class="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] flex items-center justify-center">
                         <div class="absolute w-full h-full border-2 border-dashed border-slate-300 rounded-full animate-clockwise">
-                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-900 border border-slate-100"><i class="fas fa-building"></i></div>
+                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-building"></i></div>
                         </div>
                         <div class="absolute w-[65%] h-[65%] border-2 border-dashed border-slate-300 rounded-full animate-anticlockwise">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center text-accent-gold border border-slate-100"><i class="fas fa-hand-holding-heart"></i></div>
+                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-accent-gold"><i class="fas fa-hand-holding-heart"></i></div>
                         </div>
                         <div class="absolute w-[30%] h-[30%] bg-slate-900 rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
                     </div>
