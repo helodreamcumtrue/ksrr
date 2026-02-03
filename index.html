@@ -12,37 +12,35 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: #1e293b;
             background-color: #fcfcfc;
+            scroll-behavior: smooth;
         }
         
-        /* New Color Palette: Midnight Slate & Gold */
+        /* Theme Definitions */
         .text-brand-primary { color: #0f172a; }
         .bg-brand-primary { background-color: #0f172a; }
         .text-accent-gold { color: #d97706; }
         .bg-accent-gold { background-color: #d97706; }
         .border-accent-gold { border-color: #d97706; }
 
-        /* iOS-style Glassmorphism */
-        .glass-ios {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        /* Enhanced iOS Nav with Depth & Radius */
+        .navbar-ios {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.05),
+                0 25px 50px -12px rgba(15, 23, 42, 0.15);
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
-        }
-
-        /* Topography Texture Background */
+        /* Texture Overlays */
         .texture-bg {
             background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); 
             background-attachment: fixed;
         }
 
-        /* Carousel Styles */
+        /* Carousel Logic */
         .carousel-track {
             display: flex;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
@@ -68,40 +66,19 @@
             box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.1);
         }
 
-        .data-number {
-            font-size: 5rem;
-            font-weight: 900;
-            line-height: 1;
-            letter-spacing: -0.05em;
-            color: #0f172a;
-            display: block;
+        /* How we work section animations */
+        .work-card-premium {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .work-card-premium:hover {
+            border-color: #d97706;
+            background: rgba(30, 41, 59, 0.7);
+            transform: translateY(-8px);
         }
 
-        /* How we Work: Unique Card Styling */
-        .work-step-container {
-            position: relative;
-            z-index: 1;
-        }
-        .work-card {
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .work-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.15);
-        }
-        .step-tag {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            padding: 4px 12px;
-            border-radius: 6px;
-            background: #0f172a;
-            color: #fff;
-            width: fit-content;
-        }
-
-        /* Rotation Animations */
         @keyframes rotate-clockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes rotate-anticlockwise { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         .animate-clockwise { animation: rotate-clockwise 60s linear infinite; }
@@ -116,26 +93,17 @@
 <body class="texture-bg"> 
 
     <!-- Header / Nav Bar -->
-    <div class="fixed top-0 w-full z-50 px-4 pt-8">
-        <header class="container mx-auto glass-ios px-10 h-20 flex items-center justify-between max-w-5xl shadow-2xl shadow-slate-900/10">
+    <div class="fixed top-0 w-full z-50 px-4 pt-10">
+        <header class="container mx-auto navbar-ios px-12 h-20 flex items-center justify-between max-w-5xl">
             <div class="flex items-center">
-                <span class="text-2xl font-black tracking-tighter text-slate-900">KSR</span>
+                <span class="text-2xl font-black tracking-tighter text-slate-900 uppercase">KSR</span>
             </div>
             
-            <nav class="hidden lg:flex space-x-12 text-[16px] font-bold text-slate-700">
-                <a href="#" class="hover:text-brand-primary transition relative group">
-                    Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#impact" class="hover:text-brand-primary transition relative group">
-                    Impact
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#how-we-work-section" class="hover:text-brand-primary transition relative group">
-                    Workflow
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#success" class="text-brand-primary border-b-2 border-brand-primary">Success</a>
+            <nav class="hidden lg:flex space-x-12 text-[16px] font-bold text-slate-800">
+                <a href="#" class="hover:text-accent-gold transition">Home</a>
+                <a href="#impact" class="hover:text-accent-gold transition">Impact</a>
+                <a href="#how-we-work-section" class="hover:text-accent-gold transition">Workflow</a>
+                <a href="#success" class="hover:text-accent-gold transition">Success</a>
             </nav>
 
             <div class="flex items-center">
@@ -147,16 +115,16 @@
     </div>
 
     <!-- 1. Hero Section -->
-    <section class="pt-60 pb-32 overflow-hidden relative">
+    <section class="pt-64 pb-32 overflow-hidden relative">
         <div class="container mx-auto px-6 relative">
             <div class="flex flex-col lg:flex-row items-center gap-20">
                 <div class="lg:w-1/2">
                     <div class="inline-flex items-center space-x-3 text-xs font-bold text-slate-600 bg-slate-100 px-4 py-2 rounded-full mb-8">
-                        <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-ping"></span>
-                        <span class="uppercase tracking-widest">Global Institutional Standards</span>
+                        <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-pulse"></span>
+                        <span class="uppercase tracking-widest">National CSR Infrastructure</span>
                     </div>
                     <h1 class="text-6xl lg:text-8xl font-black text-slate-900 leading-[0.95] mb-8 tracking-tighter">
-                        Premier <span class="text-accent-gold italic">CSR</span><br>Execution.
+                        Strategic <span class="text-accent-gold italic">CSR</span><br>Execution.
                     </h1>
                     
                     <div class="flex flex-wrap items-center gap-8 mb-12">
@@ -166,49 +134,41 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-lock text-slate-400 text-lg"></i>
-                            <span class="text-slate-800 font-bold text-sm tracking-tight">Bank-Grade Escrow</span>
+                            <span class="text-slate-800 font-bold text-sm tracking-tight">Verified Implementation</span>
                         </div>
                     </div>
 
                     <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed font-medium">
-                        Seamlessly connect with verified NGOs, protect allocations through escrow, and generate audit-ready compliance reports.
+                        A precision-engineered platform designed to eliminate friction in India's social impact landscape through transparency.
                     </p>
 
                     <div class="flex flex-wrap gap-6">
                         <button class="bg-slate-900 text-white px-12 py-5 rounded-full font-black text-sm tracking-widest hover:bg-slate-800 transition shadow-2xl">
                             GET STARTED
                         </button>
-                        <button class="bg-white border-2 border-slate-200 text-slate-900 px-12 py-5 rounded-full font-black text-sm tracking-widest hover:border-slate-900 transition">
-                            MORE INFO.
-                        </button>
                     </div>
                 </div>
 
                 <div class="lg:w-1/2 relative">
                     <div class="bg-white rounded-[50px] p-10 border border-slate-200 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.15)] relative">
-                        <div class="flex justify-between items-center mb-10">
-                            <h4 class="font-black text-slate-900 uppercase tracking-widest text-xs">Live Portfolio</h4>
-                            <div class="flex space-x-1">
-                                <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
-                                <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
-                            </div>
+                        <div class="flex justify-between items-center mb-10 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            <h4>Live Deployment</h4>
+                            <span>Live</span>
                         </div>
-                        
                         <div class="grid grid-cols-2 gap-6 mb-10">
                             <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Available Fund</p>
+                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Total Fund</p>
                                 <p class="text-3xl font-black text-slate-900">₹2.4Cr</p>
                             </div>
-                            <div class="bg-slate-900 p-8 rounded-3xl shadow-xl shadow-slate-900/20">
-                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Impact Deployed</p>
+                            <div class="bg-slate-900 p-8 rounded-3xl shadow-xl">
+                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Deployed</p>
                                 <p class="text-3xl font-black text-white">₹1.8Cr</p>
                             </div>
                         </div>
-                        
                         <div class="bg-white p-8 rounded-3xl border border-slate-100">
-                            <div class="flex justify-between items-center mb-4">
-                                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Milestone Audit</p>
-                                <p class="text-xs font-black text-accent-gold">75%</p>
+                            <div class="flex justify-between items-center mb-4 text-xs font-black">
+                                <span class="text-slate-500">AUDIT SCORE</span>
+                                <span class="text-accent-gold">75%</span>
                             </div>
                             <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
                                 <div class="bg-accent-gold h-full w-3/4"></div>
@@ -225,69 +185,45 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row lg:items-stretch gap-20">
                 
-                <!-- Video on Left (Height Aligned) -->
-                <div class="lg:w-1/2 relative min-h-[500px]">
-                    <div class="rounded-[60px] overflow-hidden shadow-2xl relative group h-full border border-slate-100">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Education" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700">
-                        <div class="absolute inset-0 bg-slate-900/10"></div>
-                        <div class="absolute bottom-10 left-10 right-10 glass-ios p-8 rounded-[40px] flex items-center justify-between border border-white shadow-2xl">
+                <!-- Aligned Video Section -->
+                <div class="lg:w-1/2 relative">
+                    <div class="rounded-[60px] overflow-hidden shadow-2xl relative h-full border border-slate-100 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Action" class="w-full h-full object-cover">
+                        <div class="absolute bottom-10 left-10 right-10 navbar-ios p-8 rounded-[40px] flex items-center justify-between border border-white shadow-2xl">
                             <div>
-                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">On-Ground Action</p>
-                                <p class="font-black text-slate-900 text-xl">Impact Genesis</p>
+                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Impact Story</p>
+                                <p class="font-black text-slate-900 text-xl">Execution Genesis</p>
                             </div>
                             <button class="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"><i class="fas fa-play text-xs"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4 Specific Content Boxes on Right -->
+                <!-- 4 Content Boxes -->
                 <div class="lg:w-1/2 flex flex-col justify-center">
-                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Proven Outcomes</p>
-                    <h2 class="text-5xl lg:text-6xl font-black text-slate-900 mb-10 leading-tight tracking-tighter">Transparent Execution,<br>Measurable Impact.</h2>
+                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Impact Metrics</p>
+                    <h2 class="text-5xl lg:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Verified Results,<br>Transparent Execution.</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Education -->
-                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-book-open"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Education</h4>
-                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">45 Verified Active Projects</p>
-                            <div class="flex items-baseline space-x-2">
-                                <span class="text-3xl font-black text-slate-900 tracking-tighter">2.5L+</span>
-                                <span class="text-[10px] font-black text-slate-400 uppercase">Students</span>
-                            </div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Education</h4>
+                            <p class="text-3xl font-black text-slate-900 tracking-tighter">2.5L+ <span class="text-[10px] text-slate-400 uppercase font-black">Students</span></p>
                         </div>
-
-                        <!-- Healthcare -->
-                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-heart-pulse"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Healthcare</h4>
-                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">32 Verified Active Projects</p>
-                            <div class="flex items-baseline space-x-2">
-                                <span class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+</span>
-                                <span class="text-[10px] font-black text-slate-400 uppercase">Lives</span>
-                            </div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Healthcare</h4>
+                            <p class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+ <span class="text-[10px] text-slate-400 uppercase font-black">Lives Saved</span></p>
                         </div>
-
-                        <!-- Environment -->
-                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-seedling"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Environment</h4>
-                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">28 Verified Active Projects</p>
-                            <div class="flex items-baseline space-x-2">
-                                <span class="text-3xl font-black text-slate-900 tracking-tighter">3.2k+</span>
-                                <span class="text-[10px] font-black text-slate-400 uppercase">MT CO2</span>
-                            </div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Environment</h4>
+                            <p class="text-3xl font-black text-slate-900 tracking-tighter">3.2k <span class="text-[10px] text-slate-400 uppercase font-black">MT Offset</span></p>
                         </div>
-
-                        <!-- Skill Development -->
-                        <div class="bg-slate-50 p-8 rounded-[35px] border border-slate-100 hover:border-accent-gold/30 transition-all group">
+                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 group hover:border-accent-gold/40 transition-all">
                             <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-tools"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-sm">Skills</h4>
-                            <p class="text-xs text-slate-500 font-bold mb-6 tracking-tight">26 Verified Active Projects</p>
-                            <div class="flex items-baseline space-x-2">
-                                <span class="text-3xl font-black text-slate-900 tracking-tighter">15k+</span>
-                                <span class="text-[10px] font-black text-slate-400 uppercase">Youth</span>
-                            </div>
+                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Skill Dev.</h4>
+                            <p class="text-3xl font-black text-slate-900 tracking-tighter">15k+ <span class="text-[10px] text-slate-400 uppercase font-black">Certified</span></p>
                         </div>
                     </div>
                 </div>
@@ -295,79 +231,71 @@
         </div>
     </section>
 
-    <!-- 3. HOW WE WORK: Premium Bespoke Design -->
+    <!-- 3. HOW WE WORK: Midnight Redesign -->
     <section id="how-we-work-section" class="py-40 bg-slate-950 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
         
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-32">
-                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Execution Blueprint</p>
-                <h2 class="text-6xl lg:text-8xl font-black text-white tracking-tighter leading-none mb-10">How we Work?</h2>
+                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Blueprint</p>
+                <h2 class="text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none mb-10">How we Work?</h2>
                 <div class="w-20 h-1 bg-accent-gold mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Staggered Layout with Premium Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 01 -->
-                <div class="work-step-container">
-                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-slate-900/40 rounded-full blur-3xl"></div>
-                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">01</span>
-                        <div class="step-tag mb-10">STAGE 01</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Corporates Register Goals</h4>
-                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Establish specific CSR focus areas, geographic priorities, and budget frameworks through our secure dashboard.</p>
-                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
-                            <span>Initial Audit</span>
-                            <div class="flex-1 h-px bg-slate-800"></div>
-                        </div>
+                <div class="lg:mb-12">
+                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
+                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">01</span>
+                        <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 01</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Corporate Registration</h4>
+                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
+                            Define your unique CSR focus areas, geographic priorities, and budget frameworks through our secure audited gateway.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 02 -->
-                <div class="work-step-container lg:mt-24">
-                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden border-t-accent-gold">
-                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">02</span>
-                        <div class="step-tag mb-10">STAGE 02</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">NGO Partner Verification</h4>
-                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Implementation partners undergo deep 4-layer due diligence including 12A/80G status and historical impact audits.</p>
-                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
-                            <span>KYC/Compliance</span>
-                            <div class="flex-1 h-px bg-slate-800"></div>
-                        </div>
+                <div class="lg:mt-12">
+                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
+                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">02</span>
+                        <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 02</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">NGO Partner Audit</h4>
+                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
+                            Implementing partners undergo a rigorous 4-layer due diligence, ensuring 12A/80G status and historical impact record.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 03 -->
-                <div class="work-step-container">
-                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden">
-                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">03</span>
-                        <div class="step-tag mb-10">STAGE 03</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">AI Matching & Alignment</h4>
-                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Our proprietary matching engine pairs budgets with the most effective local initiatives for maximum social ROI.</p>
-                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
-                            <span>Optimization</span>
-                            <div class="flex-1 h-px bg-slate-800"></div>
-                        </div>
+                <div class="lg:mb-12">
+                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
+                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">03</span>
+                        <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 03</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Matching Ecosystem</h4>
+                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
+                            Our proprietary engine aligns corporate budgets with the most effective local NGO projects for maximum social impact ROI.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 04 -->
-                <div class="work-step-container lg:mt-24">
-                    <div class="glass-card p-12 rounded-[50px] work-card h-full flex flex-col group relative overflow-hidden border-t-accent-gold">
-                        <span class="text-7xl font-black text-white/5 absolute top-4 right-8">04</span>
-                        <div class="step-tag mb-10">STAGE 04</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Impact Audit & Reporting</h4>
-                        <p class="text-slate-400 font-medium text-sm leading-relaxed mb-10">Live tracking of every rupee via escrow, concluding with automated, audit-ready regulatory reporting.</p>
-                        <div class="mt-auto flex items-center space-x-2 text-accent-gold font-bold text-[10px] uppercase tracking-widest">
-                            <span>Final Filings</span>
-                            <div class="flex-1 h-px bg-slate-800"></div>
-                        </div>
+                <div class="lg:mt-12">
+                    <div class="work-card-premium p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
+                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">04</span>
+                        <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 04</div>
+                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Verified Reporting</h4>
+                        <p class="text-slate-300 font-semibold text-base leading-relaxed">
+                            Live milestone tracking via escrow, concluding with automated, audit-ready compliance reporting for statutory regulators.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Institutional Success (Impact Created) -->
+    <!-- 4. Institutional Success -->
     <section id="success" class="py-32 impact-section-bg overflow-hidden relative">
         <div class="gradient-overlay"></div>
         <div class="container mx-auto px-6 relative z-10 text-center">
@@ -376,94 +304,84 @@
             
             <div class="carousel-container overflow-visible">
                 <div class="carousel-track" id="impact-carousel">
-                    <!-- Case Study 1 -->
+                    <!-- LG -->
                     <div class="carousel-card-wrapper">
-                        <div class="impact-card group hover:scale-[1.02] transition-transform">
+                        <div class="impact-card">
                             <div class="flex justify-between items-start">
                                 <div class="text-left">
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Corporate Partner</p>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"> Institutional Partner</p>
                                     <h3 class="text-xl font-black text-slate-900 uppercase">LG Electronics India</h3>
                                 </div>
-                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-900 shadow-sm"><i class="fas fa-shield-check"></i></div>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
                             </div>
-                            <div class="text-left py-10">
+                            <div class="text-left py-12">
                                 <span class="data-number">400+</span>
                                 <h4 class="text-2xl font-black text-slate-900 leading-tight">Units of Blood Collected Across India</h4>
                             </div>
                             <div class="text-left pt-10 border-t border-slate-100">
-                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">End-to-end execution of massive blood donation drives ensuring full institutional compliance.</p>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">View Full Report</button>
+                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Managing cross-country donation campaigns with full institutional transparency.</p>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">Read Report</button>
                             </div>
                         </div>
                     </div>
-                    <!-- Case Study 2 -->
+                    <!-- PNB -->
                     <div class="carousel-card-wrapper">
-                        <div class="impact-card group hover:scale-[1.02] transition-transform">
+                        <div class="impact-card">
                             <div class="flex justify-between items-start">
                                 <div class="text-left">
-                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Corporate Partner</p>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Institutional Partner</p>
                                     <h3 class="text-xl font-black text-slate-900 uppercase">PNB Bank</h3>
                                 </div>
-                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-900 shadow-sm"><i class="fas fa-shield-check"></i></div>
+                                <div class="verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
                             </div>
-                            <div class="text-left py-10">
+                            <div class="text-left py-12">
                                 <span class="data-number">70+</span>
                                 <h4 class="text-2xl font-black text-slate-900 leading-tight">Women Trained for Financial Literacy</h4>
                             </div>
                             <div class="text-left pt-10 border-t border-slate-100">
-                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Upskilling rural self-help groups with digital finance and entrepreneurship workshops.</p>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">View Full Report</button>
+                                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">Upskilling rural self-help groups with digital selling and microfinance workshops.</p>
+                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1">Read Report</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center items-center mt-20 space-x-8">
-                <button id="prev-btn" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><i class="fas fa-arrow-left"></i></button>
-                <div class="flex space-x-3" id="carousel-indicators">
-                    <div class="indicator-dot active w-12" data-index="0"></div>
-                    <div class="indicator-dot w-4" data-index="1"></div>
+            <div class="flex justify-center items-center mt-20 space-x-12">
+                <button id="prev-btn" class="text-slate-400 hover:text-slate-900 transition-all font-black text-xs uppercase tracking-widest"><i class="fas fa-arrow-left mr-3"></i> Prev</button>
+                <div class="flex space-x-4" id="carousel-indicators">
+                    <div class="indicator-dot active" data-index="0"></div>
+                    <div class="indicator-dot" data-index="1"></div>
                 </div>
-                <button id="next-btn" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-900 hover:text-slate-900 transition-all"><i class="fas fa-arrow-right"></i></button>
+                <button id="next-btn" class="text-slate-400 hover:text-slate-900 transition-all font-black text-xs uppercase tracking-widest">Next <i class="fas fa-arrow-right ml-3"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- 5. Become Our Partner Section -->
-    <section id="partner-section" class="py-32 bg-slate-50 texture-bg border-y border-slate-100">
-        <div class="container mx-auto px-6 relative">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-20">
-                
+    <!-- 5. Become Our Partner -->
+    <section id="partner-section" class="py-32 bg-slate-100 border-y border-slate-200 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-24">
                 <div class="w-full lg:w-1/2 max-w-xl">
-                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative overflow-hidden border border-slate-100">
-                        <div class="partner-card-pattern"></div>
-                        <div class="relative z-10">
-                            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Join the Ecosystem.</h2>
-                            <p class="text-slate-500 font-bold mb-12 uppercase tracking-widest text-[10px]">Strategic Partnership Onboarding</p>
-                            
-                            <form class="space-y-10">
-                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
-                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
-                                <input type="tel" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
-                                <input type="email" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
-                                
-                                <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl transition-transform hover:scale-105 tracking-widest text-xs">
-                                    SUBMIT REQUEST
-                                </button>
-                            </form>
-                        </div>
+                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative border border-slate-200">
+                        <h2 class="text-4xl font-black text-slate-900 mb-12 tracking-tighter">Become Our Partner</h2>
+                        <form class="space-y-10">
+                            <input type="text" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
+                            <input type="text" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
+                            <input type="tel" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
+                            <input type="email" class="w-full bg-transparent border-b-2 border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
+                            <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl tracking-widest text-xs">SUBMIT REQUEST</button>
+                        </form>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[500px]">
-                    <div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center">
-                        <div class="absolute w-full h-full border border-dashed border-slate-300 rounded-full animate-clockwise">
-                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-building"></i></div>
-                            <div class="absolute top-1/2 -right-7 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-industry"></i></div>
+                <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[500px]">
+                    <div class="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] flex items-center justify-center">
+                        <div class="absolute w-full h-full border-2 border-dashed border-slate-300 rounded-full animate-clockwise">
+                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-900 border border-slate-100"><i class="fas fa-building"></i></div>
                         </div>
-                        <div class="absolute w-[65%] h-[65%] border border-dashed border-slate-300 rounded-full animate-anticlockwise">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-accent-gold"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="absolute w-[65%] h-[65%] border-2 border-dashed border-slate-300 rounded-full animate-anticlockwise">
+                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center text-accent-gold border border-slate-100"><i class="fas fa-hand-holding-heart"></i></div>
                         </div>
                         <div class="absolute w-[30%] h-[30%] bg-slate-900 rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
                     </div>
@@ -472,51 +390,22 @@
         </div>
     </section>
 
-    <!-- 6. Footer (Black Theme) -->
+    <!-- 6. Footer -->
     <footer id="footer" class="bg-black text-white pt-24 pb-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-20">
-                <div>
-                    <div class="mb-10"><span class="text-3xl font-black tracking-tighter uppercase">KSR</span></div>
-                    <p class="text-accent-gold font-black text-xs uppercase tracking-[0.3em] mb-6 italic">WHEN YOU THINK CSR, THINK KSR</p>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-10 max-w-xs font-medium">India's trusted institutional platform for radical transparency in social impact.</p>
-                </div>
-                <div>
-                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Platform</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
-                        <li><a href="#" class="hover:text-accent-gold transition">How It Works</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">Verified NGOs</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">Impact Analytics</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Partners</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
-                        <li><a href="#" class="hover:text-accent-gold transition">For Corporates</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">For NGOs</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">Legal Counsel</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-black text-white mb-10 text-xs uppercase tracking-widest">Legal</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold">
-                        <li><a href="#" class="hover:text-accent-gold transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">Terms of Access</a></li>
-                        <li><a href="#" class="hover:text-accent-gold transition">CSR-2 Compliance</a></li>
-                    </ul>
-                </div>
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-black mb-10 tracking-tighter uppercase">KSR</h3>
+            <p class="text-accent-gold font-black text-sm uppercase tracking-[0.4em] mb-12 italic">WHEN YOU THINK CSR, THINK KSR</p>
+            <div class="flex justify-center space-x-12 text-[10px] font-black text-slate-500 uppercase tracking-widest mb-16">
+                <a href="#" class="hover:text-white transition">Privacy</a>
+                <a href="#" class="hover:text-white transition">Terms</a>
+                <a href="#" class="hover:text-white transition">Legal</a>
             </div>
-            <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">
-                <p>&copy; 2026 KSR. National Infrastructure Initiative.</p>
-                <div class="flex space-x-10 mt-8 md:mt-0">
-                    <a href="#" class="hover:text-white transition">LINKEDIN</a>
-                    <a href="#" class="hover:text-white transition">TWITTER</a>
-                </div>
-            </div>
+            <p class="text-slate-700 text-[10px] font-black uppercase tracking-widest">&copy; 2026 KSR. National Infrastructure Initiative.</p>
         </div>
     </footer>
 
     <script>
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
