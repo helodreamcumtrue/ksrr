@@ -6,94 +6,90 @@
     <title>KSR - India's Premier CSR Execution Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #1e293b;
+            color: #334155; /* Slate-700: Softer than black, high visibility */
             background-color: #fcfcfc;
             scroll-behavior: smooth;
         }
         
-        /* Theme Definitions */
-        .text-brand-primary { color: #0f172a; }
-        .bg-brand-primary { background-color: #0f172a; }
-        .text-accent-gold { color: #d97706; }
-        .bg-accent-gold { background-color: #d97706; }
-        .border-accent-gold { border-color: #d97706; }
+        /* Theme Definitions - Softer contrasts */
+        .text-slate-heavy { color: #0f172a; } /* Slate-900 */
+        .bg-slate-heavy { background-color: #0f172a; }
+        .text-accent-gold { color: #b45309; } /* Amber-700: More refined gold */
+        .bg-accent-gold { background-color: #b45309; }
 
-        /* Updated: Latest iOS-style Glassmorphism with Depth & Radius */
+        /* Compact iOS-style Glassmorphism Nav */
         .navbar-ios {
-            background: rgba(255, 255, 255, 0.45); /* Lower opacity for real glass feel */
-            backdrop-filter: blur(25px) saturate(210%);
-            -webkit-backdrop-filter: blur(25px) saturate(210%);
-            border-radius: 60px; /* High corner radius */
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            /* Complex multi-layered shadow for significant depth */
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border-radius: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 25px 60px -15px rgba(0, 0, 0, 0.1),
-                0 10px 20px -10px rgba(0, 0, 0, 0.05),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.4); /* Inner rim glow */
+                0 4px 12px -2px rgba(0, 0, 0, 0.03),
+                0 15px 30px -10px rgba(15, 23, 42, 0.08);
         }
 
-        /* Texture Overlays */
+        /* Balanced Glass Cards for Workflow */
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        /* Texture Overlay */
         .texture-bg {
             background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); 
             background-attachment: fixed;
+            background-size: 200px;
         }
 
-        /* Dark Glass Cards for Workflow */
-        .glass-card-dark {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-        }
-
-        /* Impact Carousel Styles */
+        /* Carousel Track */
         .carousel-track {
             display: flex;
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .carousel-card-wrapper {
             flex: 0 0 100%;
             display: flex;
             justify-content: center;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
-        /* Updated Wide Horizontal Card */
+        /* Balanced Wide Card */
         .impact-card {
             width: 100%;
-            max-width: 1000px; 
+            max-width: 940px; 
             background: white;
-            border-radius: 40px;
+            border-radius: 32px;
             border: 1px solid #f1f5f9;
             overflow: hidden;
             display: flex;
             flex-direction: row; 
-            box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.12);
-            transition: all 0.4s ease;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.06);
         }
 
         .impact-card-left {
-            width: 45%;
+            width: 40%;
             position: relative;
-            min-height: 500px;
+            min-height: 400px;
         }
 
         .impact-card-left img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.85);
+            filter: brightness(0.9);
         }
 
         .impact-card-right {
-            width: 55%;
-            padding: 60px;
+            width: 60%;
+            padding: 40px 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -101,149 +97,118 @@
         }
 
         .data-number {
-            font-size: 5rem;
-            font-weight: 900;
+            font-size: 3.5rem; /* Reduced from 5rem for balance */
+            font-weight: 800;
             line-height: 1;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.04em;
             color: #0f172a;
             display: block;
-            margin-bottom: 1rem;
-        }
-
-        .verified-badge {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            color: #64748b;
-            padding: 6px 16px;
-            border-radius: 99px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .verified-badge i {
-            color: #d97706;
-            margin-right: 6px;
+            margin-bottom: 0.5rem;
         }
 
         /* Indicators */
         .indicator-dot {
-            height: 5px;
+            height: 4px;
             border-radius: 10px;
-            background-color: #cbd5e1;
-            transition: all 0.5s ease;
-            width: 12px;
+            background-color: #e2e8f0;
+            transition: all 0.4s ease;
+            width: 8px;
         }
         .indicator-dot.active {
             background-color: #0f172a;
-            width: 40px;
+            width: 28px;
         }
 
-        /* Rotation Animations */
-        @keyframes rotate-clockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes rotate-anticlockwise { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-        .animate-clockwise { animation: rotate-clockwise 60s linear infinite; }
-        .animate-anticlockwise { animation: rotate-anticlockwise 45s linear infinite; }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0f172a; }
-
         @media (max-width: 1024px) {
-            .impact-card { flex-direction: column; max-width: 500px; }
+            .impact-card { flex-direction: column; max-width: 450px; }
             .impact-card-left, .impact-card-right { width: 100%; min-height: unset; }
-            .impact-card-left { height: 250px; }
-            .impact-card-right { padding: 40px; }
-            .data-number { font-size: 3.5rem; }
+            .impact-card-left { height: 220px; }
+            .impact-card-right { padding: 30px; }
+            .data-number { font-size: 2.75rem; }
         }
     </style>
 </head>
 <body class="texture-bg"> 
 
-    <!-- Header / Nav Bar -->
-    <div class="fixed top-0 w-full z-50 px-4 pt-10">
-        <header class="container mx-auto navbar-ios px-12 h-20 flex items-center justify-between max-w-5xl">
+    <!-- Header / Nav Bar: More compact -->
+    <div class="fixed top-0 w-full z-50 px-4 pt-6">
+        <header class="container mx-auto navbar-ios px-8 h-16 flex items-center justify-between max-w-4xl">
             <div class="flex items-center">
-                <span class="text-2xl font-black tracking-tighter text-slate-900 uppercase">KSR</span>
+                <span class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">KSR</span>
             </div>
             
-            <nav class="hidden lg:flex space-x-12 text-[16px] font-bold text-slate-800">
-                <a href="#" class="hover:text-accent-gold transition">Home</a>
-                <a href="#impact" class="hover:text-accent-gold transition">Impact</a>
-                <a href="#how-we-work-section" class="hover:text-accent-gold transition">Workflow</a>
-                <a href="#success" class="hover:text-accent-gold transition">Success</a>
+            <nav class="hidden lg:flex space-x-8 text-[14px] font-semibold text-slate-600">
+                <a href="#" class="hover:text-slate-900 transition">Home</a>
+                <a href="#impact" class="hover:text-slate-900 transition">Impact</a>
+                <a href="#how-we-work-section" class="hover:text-slate-900 transition">Workflow</a>
+                <a href="#success" class="hover:text-slate-900 transition">Success</a>
             </nav>
 
             <div class="flex items-center">
-                <a href="#" class="bg-slate-900 text-white px-8 py-3 rounded-full text-xs font-black tracking-widest hover:bg-slate-800 transition shadow-lg">
+                <a href="#" class="bg-slate-900 text-white px-5 py-2 rounded-full text-[11px] font-bold tracking-wider hover:bg-slate-800 transition">
                     DASHBOARD
                 </a>
             </div>
         </header>
     </div>
 
-    <!-- 1. Hero Section -->
-    <section class="pt-64 pb-32 overflow-hidden bg-white relative">
+    <!-- 1. Hero Section: Reduced sizes and padding -->
+    <section class="pt-48 pb-20 overflow-hidden bg-white relative">
         <div class="container mx-auto px-6 relative">
-            <div class="flex flex-col lg:flex-row items-center gap-20">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2">
-                    <div class="inline-flex items-center space-x-3 text-xs font-bold text-slate-600 bg-slate-100 px-4 py-2 rounded-full mb-8">
-                        <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-pulse"></span>
+                    <div class="inline-flex items-center space-x-2 text-[10px] font-bold text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full mb-6">
+                        <span class="flex h-1.5 w-1.5 rounded-full bg-accent-gold"></span>
                         <span class="uppercase tracking-widest">National CSR Infrastructure</span>
                     </div>
-                    <h1 class="text-6xl lg:text-8xl font-black text-slate-900 leading-[0.95] mb-8 tracking-tighter">
-                        Strategic <span class="text-accent-gold italic">CSR</span><br>Execution.
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.15] mb-6 tracking-tight">
+                        Strategic <span class="text-accent-gold italic">CSR</span><br>Execution Excellence.
                     </h1>
                     
-                    <div class="flex flex-wrap items-center gap-8 mb-12">
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-certificate text-accent-gold text-lg"></i>
-                            <span class="text-slate-800 font-bold text-sm tracking-tight">CSR Act 2013 Compliant</span>
+                    <div class="flex flex-wrap items-center gap-6 mb-8">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-accent-gold text-sm"></i>
+                            <span class="text-slate-700 font-semibold text-xs tracking-tight">CSR Act 2013 Compliant</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-lock text-slate-400 text-lg"></i>
-                            <span class="text-slate-800 font-bold text-sm tracking-tight">Verified Implementation</span>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-alt text-slate-400 text-sm"></i>
+                            <span class="text-slate-700 font-semibold text-xs tracking-tight">Verified Implementation</span>
                         </div>
                     </div>
 
-                    <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed font-medium">
-                        A precision-engineered platform designed to eliminate friction in India's social impact landscape through radical transparency.
+                    <p class="text-base text-slate-600 mb-8 max-w-md leading-relaxed">
+                        A precision-engineered platform designed to eliminate friction in India's social impact landscape through transparency and data.
                     </p>
 
-                    <div class="flex flex-wrap gap-6">
-                        <button class="bg-slate-900 text-white px-12 py-5 rounded-full font-black text-sm tracking-widest hover:bg-slate-800 transition shadow-2xl">
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-slate-900 text-white px-8 py-3.5 rounded-full font-bold text-xs tracking-widest hover:bg-slate-800 transition">
                             GET STARTED
                         </button>
                     </div>
                 </div>
 
                 <div class="lg:w-1/2 relative">
-                    <div class="bg-white rounded-[50px] p-10 border border-slate-200 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.15)] relative">
-                        <div class="flex justify-between items-center mb-10 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                            <h4>Live Deployment</h4>
-                            <span>Live</span>
+                    <div class="bg-white rounded-[40px] p-8 border border-slate-100 shadow-[0_30px_60px_-20px_rgba(15,23,42,0.1)] relative">
+                        <div class="flex justify-between items-center mb-8 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+                            <h4>Current Deployment</h4>
+                            <span class="text-emerald-500 flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>Live</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-6 mb-10">
-                            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Total Fund</p>
-                                <p class="text-3xl font-black text-slate-900">₹2.4Cr</p>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mb-1 tracking-widest">Available Fund</p>
+                                <p class="text-2xl font-extrabold text-slate-900">₹2.4Cr</p>
                             </div>
-                            <div class="bg-slate-900 p-8 rounded-3xl shadow-xl">
-                                <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest">Deployed</p>
-                                <p class="text-3xl font-black text-white">₹1.8Cr</p>
+                            <div class="bg-slate-900 p-6 rounded-2xl shadow-lg">
+                                <p class="text-[9px] text-slate-300 font-bold uppercase mb-1 tracking-widest">Impacted</p>
+                                <p class="text-2xl font-extrabold text-white">₹1.8Cr</p>
                             </div>
                         </div>
-                        <div class="bg-white p-8 rounded-3xl border border-slate-100">
-                            <div class="flex justify-between items-center mb-4 text-xs font-black">
-                                <span class="text-slate-500 uppercase tracking-widest">Audit score</span>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-50">
+                            <div class="flex justify-between items-center mb-3 text-[10px] font-bold">
+                                <span class="text-slate-500 uppercase">Audit Score</span>
                                 <span class="text-accent-gold">75%</span>
                             </div>
-                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                                 <div class="bg-accent-gold h-full w-3/4"></div>
                             </div>
                         </div>
@@ -253,50 +218,52 @@
         </div>
     </section>
 
-    <!-- 2. Meaningful Impact Section -->
-    <section id="impact" class="py-32 bg-white">
+    <!-- 2. Meaningful Impact: Balanced Grid -->
+    <section id="impact" class="py-24 bg-white border-t border-slate-50">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row lg:items-stretch gap-20">
+            <div class="flex flex-col lg:flex-row lg:items-stretch gap-16">
                 
-                <!-- Aligned Video Section -->
-                <div class="lg:w-1/2 relative min-h-[500px]">
-                    <div class="rounded-[60px] overflow-hidden shadow-2xl relative h-full border border-slate-100 bg-slate-100">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Action" class="w-full h-full object-cover grayscale-[0.2] filter brightness-90">
-                        <div class="absolute bottom-10 left-10 right-10 navbar-ios p-8 rounded-[40px] flex items-center justify-between border border-white shadow-2xl">
-                            <div>
-                                <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Impact Genesis</p>
-                                <p class="font-black text-slate-900 text-xl">Execution Video</p>
+                <div class="lg:w-1/2 relative min-h-[400px]">
+                    <div class="rounded-[40px] overflow-hidden shadow-xl relative h-full border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Action" class="w-full h-full object-cover">
+                        <div class="absolute bottom-6 left-6 right-6 navbar-ios p-6 rounded-[24px] flex items-center justify-between border border-white shadow-lg">
+                            <div class="pr-4">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Success Story</p>
+                                <p class="font-bold text-slate-900 text-base leading-tight">Project Genesis</p>
                             </div>
-                            <button class="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"><i class="fas fa-play text-xs"></i></button>
+                            <button class="w-12 h-12 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform"><i class="fas fa-play text-[10px]"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4 Content Boxes -->
                 <div class="lg:w-1/2 flex flex-col justify-center">
-                    <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Impact Verticals</p>
-                    <h2 class="text-5xl lg:text-6xl font-black text-slate-900 mb-12 tracking-tighter">Verified Results,<br>Transparent Execution.</h2>
+                    <p class="text-accent-gold font-bold text-[11px] uppercase mb-4 tracking-[0.3em]">Proven Outcomes</p>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-8 tracking-tight">Measurable Impact,<br>Verified Results.</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
-                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-book-open"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Education</h4>
-                            <p class="text-3xl font-black text-slate-900 tracking-tighter">2.5L+ <span class="text-[10px] text-slate-400 uppercase font-black">Students</span></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:border-accent-gold/40 transition-all group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-600 mb-4 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-book-open text-xs"></i></div>
+                            <h4 class="font-bold text-slate-900 mb-1 text-xs uppercase tracking-wide">Education</h4>
+                            <p class="text-[10px] text-slate-400 font-bold mb-4 uppercase">45 Active Projects</p>
+                            <p class="text-2xl font-extrabold text-slate-900 tracking-tighter">2.5L+ <span class="text-[9px] text-slate-400 font-bold uppercase ml-1">Beneficiaries</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
-                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-heart-pulse"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Healthcare</h4>
-                            <p class="text-3xl font-black text-slate-900 tracking-tighter">1.8L+ <span class="text-[10px] text-slate-400 uppercase font-black">Lives</span></p>
+                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:border-accent-gold/40 transition-all group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-600 mb-4 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-heart-pulse text-xs"></i></div>
+                            <h4 class="font-bold text-slate-900 mb-1 text-xs uppercase tracking-wide">Healthcare</h4>
+                            <p class="text-[10px] text-slate-400 font-bold mb-4 uppercase">32 Active Projects</p>
+                            <p class="text-2xl font-extrabold text-slate-900 tracking-tighter">1.8L+ <span class="text-[9px] text-slate-400 font-bold uppercase ml-1">Lives Saved</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
-                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-seedling"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Environment</h4>
-                            <p class="text-3xl font-black text-slate-900 tracking-tighter">3.2k <span class="text-[10px] text-slate-400 uppercase font-black">MT Offset</span></p>
+                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:border-accent-gold/40 transition-all group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-600 mb-4 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-seedling text-xs"></i></div>
+                            <h4 class="font-bold text-slate-900 mb-1 text-xs uppercase tracking-wide">Environment</h4>
+                            <p class="text-[10px] text-slate-400 font-bold mb-4 uppercase">28 Active Projects</p>
+                            <p class="text-2xl font-extrabold text-slate-900 tracking-tighter">3.2k <span class="text-[9px] text-slate-400 font-bold uppercase ml-1">MT Offset</span></p>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-[40px] border border-slate-100 hover:border-accent-gold transition-all group shadow-sm">
-                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-900 mb-6 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-tools"></i></div>
-                            <h4 class="font-black text-slate-900 mb-2 uppercase tracking-wide text-xs">Skill Dev.</h4>
-                            <p class="text-3xl font-black text-slate-900 tracking-tighter">15k+ <span class="text-[10px] text-slate-400 uppercase font-black">Certified</span></p>
+                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:border-accent-gold/40 transition-all group">
+                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-600 mb-4 shadow-sm group-hover:bg-slate-900 group-hover:text-white transition-all"><i class="fas fa-tools text-xs"></i></div>
+                            <h4 class="font-bold text-slate-900 mb-1 text-xs uppercase tracking-wide">Skill Dev.</h4>
+                            <p class="text-[10px] text-slate-400 font-bold mb-4 uppercase">26 Active Projects</p>
+                            <p class="text-2xl font-extrabold text-slate-900 tracking-tighter">15k+ <span class="text-[9px] text-slate-400 font-bold uppercase ml-1">Certified</span></p>
                         </div>
                     </div>
                 </div>
@@ -304,81 +271,80 @@
         </div>
     </section>
 
-    <!-- 3. HOW WE WORK -->
-    <section id="how-we-work-section" class="py-40 bg-slate-950 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+    <!-- 3. HOW WE WORK: Compact & Clean -->
+    <section id="how-we-work-section" class="py-24 bg-slate-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 25px 25px;"></div>
         
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-32">
-                <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.6em]">The Blueprint</p>
-                <h2 class="text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none mb-10">How we Work?</h2>
-                <div class="w-20 h-1 bg-accent-gold mx-auto"></div>
+            <div class="text-center mb-16">
+                <p class="text-accent-gold font-bold text-[11px] uppercase mb-4 tracking-[0.4em]">The Protocol</p>
+                <h2 class="text-4xl font-extrabold text-white tracking-tight leading-none mb-4">How we Work?</h2>
+                <div class="w-12 h-0.5 bg-accent-gold mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="lg:mb-12">
-                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
-                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">01</span>
-                        <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 01</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Corporate Registration</h4>
-                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Define your unique CSR focus areas, geographic priorities, and budget frameworks through our audited gateway.</p>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 01 -->
+                <div class="glass-card-dark p-8 rounded-[32px] h-full flex flex-col group relative overflow-hidden">
+                    <span class="text-5xl font-extrabold text-white/5 absolute top-4 right-6">01</span>
+                    <div class="bg-accent-gold text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-md w-fit mb-8 uppercase">Stage 01</div>
+                    <h4 class="text-lg font-bold text-white mb-4 leading-tight">Corporate Goals</h4>
+                    <p class="text-slate-400 font-medium text-xs leading-relaxed">Define CSR focus areas, geography, and budget frameworks through our audited gateway.</p>
                 </div>
-                <div class="lg:mt-12">
-                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
-                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">02</span>
-                        <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 02</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">NGO Partner Audit</h4>
-                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Implementing partners undergo a deep 4-layer due diligence ensuring 12A/80G status and historical impact record.</p>
-                    </div>
+
+                <!-- Step 02 -->
+                <div class="glass-card-dark p-8 rounded-[32px] h-full flex flex-col group relative overflow-hidden border-t-2 border-t-accent-gold">
+                    <span class="text-5xl font-extrabold text-white/5 absolute top-4 right-6">02</span>
+                    <div class="bg-slate-800 text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-md w-fit mb-8 uppercase">Stage 02</div>
+                    <h4 class="text-lg font-bold text-white mb-4 leading-tight">NGO Audit</h4>
+                    <p class="text-slate-400 font-medium text-xs leading-relaxed">Partners undergo deep 4-layer due diligence, ensuring 12A/80G status and impact history.</p>
                 </div>
-                <div class="lg:mb-12">
-                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden">
-                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">03</span>
-                        <div class="bg-accent-gold text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 03</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Smart Matching Core</h4>
-                        <p class="text-slate-300 font-semibold text-base leading-relaxed">Our proprietary engine aligns corporate budgets with the most effective local NGO projects for social ROI.</p>
-                    </div>
+
+                <!-- Step 03 -->
+                <div class="glass-card-dark p-8 rounded-[32px] h-full flex flex-col group relative overflow-hidden">
+                    <span class="text-5xl font-extrabold text-white/5 absolute top-4 right-6">03</span>
+                    <div class="bg-accent-gold text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-md w-fit mb-8 uppercase">Stage 03</div>
+                    <h4 class="text-lg font-bold text-white mb-4 leading-tight">AI Matching</h4>
+                    <p class="text-slate-400 font-medium text-xs leading-relaxed">Our engine aligns budgets with the most effective local initiatives for maximum social ROI.</p>
                 </div>
-                <div class="lg:mt-12">
-                    <div class="glass-card-dark p-10 rounded-[50px] h-full flex flex-col group relative overflow-hidden border-t-4 border-t-accent-gold">
-                        <span class="text-7xl font-black text-white/5 absolute top-6 right-10">04</span>
-                        <div class="bg-slate-800 text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-lg w-fit mb-10 uppercase">Stage 04</div>
-                        <h4 class="text-2xl font-black text-white mb-6 leading-tight">Verified Reporting</h4>
-                        <p class="text-slate-200 font-semibold text-base leading-relaxed">Live milestone tracking via escrow, concluding with automated, audit-ready compliance reporting for regulators.</p>
-                    </div>
+
+                <!-- Step 04 -->
+                <div class="glass-card-dark p-8 rounded-[32px] h-full flex flex-col group relative overflow-hidden border-t-2 border-t-accent-gold">
+                    <span class="text-5xl font-extrabold text-white/5 absolute top-4 right-6">04</span>
+                    <div class="bg-slate-800 text-white text-[9px] font-bold tracking-widest px-3 py-1 rounded-md w-fit mb-8 uppercase">Stage 04</div>
+                    <h4 class="text-lg font-bold text-white mb-4 leading-tight">Reporting</h4>
+                    <p class="text-slate-400 font-medium text-xs leading-relaxed">Live milestone tracking via escrow, concluding with automated, audit-ready compliance reporting.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Institutional Success: WIDE HORIZONTAL -->
-    <section id="success" class="py-32 impact-section-bg overflow-hidden relative text-center">
+    <!-- 4. Institutional Success -->
+    <section id="success" class="py-24 impact-section-bg overflow-hidden relative text-center">
         <div class="gradient-overlay"></div>
         <div class="container mx-auto px-6 relative z-10">
-            <p class="text-accent-gold font-black text-xs uppercase mb-6 tracking-[0.4em]">Validation</p>
-            <h2 class="text-6xl font-black text-slate-900 mb-24 tracking-tighter">Impact Created.</h2>
+            <p class="text-accent-gold font-bold text-[11px] uppercase mb-4 tracking-[0.3em]">Institutional Validation</p>
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-16 tracking-tight">Impact Created.</h2>
             
-            <div class="carousel-container overflow-visible max-w-[1100px] mx-auto">
+            <div class="carousel-container overflow-visible max-w-[1000px] mx-auto">
                 <div class="carousel-track" id="impact-carousel">
                     <!-- LG -->
                     <div class="carousel-card-wrapper">
                         <div class="impact-card">
                             <div class="impact-card-left">
                                 <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Blood Donation">
-                                <div class="absolute top-8 left-8 navbar-ios px-5 py-2 border-none shadow-none backdrop-blur-md">
-                                    <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Institutional Partner</p>
+                                <div class="absolute top-6 left-6 navbar-ios px-4 py-1.5 border-none shadow-sm backdrop-blur-md">
+                                    <p class="text-[9px] font-bold text-slate-900 uppercase tracking-widest">Institutional Partner</p>
                                 </div>
-                                <div class="absolute top-8 right-8 verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
+                                <div class="absolute top-6 right-6 verified-badge border-none shadow-md py-1 px-3"><i class="fas fa-check-circle text-[8px]"></i> <span class="text-[9px]">Verified</span></div>
                             </div>
                             <div class="impact-card-right">
                                 <div class="mb-6">
-                                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">LG Electronics India</p>
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">LG Electronics India</p>
                                     <span class="data-number">400+</span>
-                                    <h4 class="text-2xl font-black text-slate-900 leading-tight mb-6">Units of Blood Collected Across India</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed mb-10 font-medium">Managed cross-country donation campaigns with full institutional transparency, reaching 5+ major hubs with end-to-end regulatory compliance.</p>
+                                    <h4 class="text-xl font-bold text-slate-900 leading-tight mb-4 tracking-tight">Units of Blood Collected Across India</h4>
+                                    <p class="text-slate-500 text-[13px] leading-relaxed mb-6 font-medium">Managed cross-country donation campaigns with full institutional transparency, reaching major hubs with compliance.</p>
                                 </div>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1 w-fit hover:text-accent-gold transition">Full Case Study</button>
+                                <button class="text-[10px] font-bold text-slate-900 uppercase tracking-widest border-b border-slate-900 pb-0.5 w-fit hover:text-accent-gold transition">Full Case Study</button>
                             </div>
                         </div>
                     </div>
@@ -387,94 +353,99 @@
                         <div class="impact-card">
                             <div class="impact-card-left">
                                 <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=800&q=80" alt="Women Empowerment">
-                                <div class="absolute top-8 left-8 navbar-ios px-5 py-2 border-none shadow-none backdrop-blur-md">
-                                    <p class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Institutional Partner</p>
+                                <div class="absolute top-6 left-6 navbar-ios px-4 py-1.5 border-none shadow-sm backdrop-blur-md">
+                                    <p class="text-[9px] font-bold text-slate-900 uppercase tracking-widest">Institutional Partner</p>
                                 </div>
-                                <div class="absolute top-8 right-8 verified-badge"><i class="fas fa-check-circle"></i> VERIFIED</div>
+                                <div class="absolute top-6 right-6 verified-badge border-none shadow-md py-1 px-3"><i class="fas fa-check-circle text-[8px]"></i> <span class="text-[9px]">Verified</span></div>
                             </div>
                             <div class="impact-card-right">
                                 <div class="mb-6">
-                                    <p class="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2">Punjab National Bank</p>
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Punjab National Bank</p>
                                     <span class="data-number">70+</span>
-                                    <h4 class="text-2xl font-black text-slate-900 leading-tight mb-6">Women Trained for Financial Literacy</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed mb-10 font-medium">Upskilling rural self-help groups with digital selling and microfinance workshops, creating long-term economic sustainability.</p>
+                                    <h4 class="text-xl font-bold text-slate-900 leading-tight mb-4 tracking-tight">Women Trained for Financial Literacy</h4>
+                                    <p class="text-slate-500 text-[13px] leading-relaxed mb-6 font-medium">Upskilling rural self-help groups with digital selling and microfinance workshops, creating sustainability.</p>
                                 </div>
-                                <button class="text-xs font-black text-slate-900 uppercase tracking-widest border-b-2 border-slate-900 pb-1 w-fit hover:text-accent-gold transition">Full Case Study</button>
+                                <button class="text-[10px] font-bold text-slate-900 uppercase tracking-widest border-b border-slate-900 pb-0.5 w-fit hover:text-accent-gold transition">Full Case Study</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center items-center mt-24 space-x-12">
-                <button id="prev-btn" class="text-slate-400 hover:text-slate-900 transition-all font-black text-xs uppercase tracking-widest"><i class="fas fa-arrow-left mr-3"></i> Prev</button>
-                <div class="flex space-x-3" id="carousel-indicators">
+            <div class="flex justify-center items-center mt-16 space-x-10">
+                <button id="prev-btn" class="text-slate-400 hover:text-slate-900 transition-all font-bold text-[10px] uppercase tracking-widest"><i class="fas fa-arrow-left mr-2"></i> Prev</button>
+                <div class="flex space-x-2" id="carousel-indicators">
                     <div class="indicator-dot active" data-index="0"></div>
                     <div class="indicator-dot" data-index="1"></div>
                 </div>
-                <button id="next-btn" class="text-slate-400 hover:text-slate-900 transition-all font-black text-xs uppercase tracking-widest">Next <i class="fas fa-arrow-right ml-3"></i></button>
+                <button id="next-btn" class="text-slate-400 hover:text-slate-900 transition-all font-bold text-[10px] uppercase tracking-widest">Next <i class="fas fa-arrow-right ml-2"></i></button>
             </div>
         </div>
     </section>
 
     <!-- 5. Become Our Partner Section -->
-    <section id="partner-section" class="py-32 bg-slate-50 texture-bg border-y border-slate-100">
+    <section id="partner-section" class="py-24 bg-slate-50 texture-bg border-y border-slate-100">
         <div class="container mx-auto px-6 relative">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-24">
-                <div class="w-full lg:w-1/2 max-w-xl">
-                    <div class="bg-white p-12 lg:p-16 rounded-[60px] shadow-2xl relative overflow-hidden border border-slate-100">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-24 max-w-6xl mx-auto">
+                
+                <div class="w-full lg:w-1/2">
+                    <div class="bg-white p-10 lg:p-12 rounded-[40px] shadow-xl relative overflow-hidden border border-slate-100">
                         <div class="relative z-10">
-                            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Become Our Partner</h2>
-                            <p class="text-slate-500 font-bold mb-12 uppercase tracking-widest text-[10px]">Strategic Onboarding</p>
-                            <form class="space-y-10">
-                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Organisation Name">
-                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Applicant Name">
-                                <input type="tel" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="Phone Number">
-                                <input type="email" class="w-full bg-transparent border-b border-slate-200 py-3 focus:border-slate-900 outline-none transition text-slate-900 font-bold placeholder:text-slate-300" placeholder="E-Mail ID">
-                                <button type="submit" class="bg-slate-900 text-white font-black px-12 py-5 rounded-full shadow-2xl transition-transform hover:scale-105 tracking-widest text-xs">SUBMIT REQUEST</button>
+                            <h2 class="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Become Our Partner</h2>
+                            <p class="text-slate-400 font-bold mb-10 uppercase tracking-widest text-[9px]">Strategic Onboarding</p>
+                            
+                            <form class="space-y-8">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-2 focus:border-slate-900 outline-none transition text-slate-900 font-semibold text-sm placeholder:text-slate-300" placeholder="Organisation Name">
+                                <input type="text" class="w-full bg-transparent border-b border-slate-200 py-2 focus:border-slate-900 outline-none transition text-slate-900 font-semibold text-sm placeholder:text-slate-300" placeholder="Applicant Name">
+                                <input type="tel" class="w-full bg-transparent border-b border-slate-200 py-2 focus:border-slate-900 outline-none transition text-slate-900 font-semibold text-sm placeholder:text-slate-300" placeholder="Phone Number">
+                                <input type="email" class="w-full bg-transparent border-b border-slate-200 py-2 focus:border-slate-900 outline-none transition text-slate-900 font-semibold text-sm placeholder:text-slate-300" placeholder="E-Mail ID">
+                                
+                                <button type="submit" class="bg-slate-900 text-white font-bold px-10 py-4 rounded-full shadow-lg transition-transform hover:scale-105 tracking-widest text-[10px]">
+                                    SUBMIT REQUEST
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[500px]">
-                    <div class="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] flex items-center justify-center">
-                        <div class="absolute w-full h-full border-2 border-dashed border-slate-300 rounded-full animate-clockwise">
-                            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-900"><i class="fas fa-building"></i></div>
+                <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[400px]">
+                    <div class="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] flex items-center justify-center">
+                        <div class="absolute w-full h-full border border-dashed border-slate-300 rounded-full animate-clockwise opacity-60">
+                            <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-12 h-12 bg-white rounded-full shadow-md border border-slate-50 flex items-center justify-center text-slate-900"><i class="fas fa-building text-sm"></i></div>
                         </div>
-                        <div class="absolute w-[65%] h-[65%] border-2 border-dashed border-slate-300 rounded-full animate-anticlockwise">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-accent-gold"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="absolute w-[65%] h-[65%] border border-dashed border-slate-300 rounded-full animate-anticlockwise opacity-60">
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-md border border-slate-50 flex items-center justify-center text-accent-gold"><i class="fas fa-hand-holding-heart text-sm"></i></div>
                         </div>
-                        <div class="absolute w-[30%] h-[30%] bg-slate-900 rounded-full shadow-2xl flex items-center justify-center text-white font-black text-2xl animate-pulse">KSR</div>
+                        <div class="absolute w-[30%] h-[30%] bg-slate-900 rounded-full shadow-lg flex items-center justify-center text-white font-extrabold text-xl animate-pulse">KSR</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Footer (UPDATED CONTENT) -->
-    <footer id="footer" class="bg-black text-white pt-24 pb-12">
+    <!-- 6. Footer -->
+    <footer id="footer" class="bg-black text-white pt-20 pb-10">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Column 1: Branding -->
                 <div>
-                    <div class="mb-8"><span class="text-3xl font-black tracking-tighter uppercase">KSR</span></div>
-                    <p class="text-accent-gold font-black text-sm uppercase tracking-widest mb-4 italic">
+                    <div class="mb-6"><span class="text-2xl font-extrabold tracking-tighter uppercase">KSR</span></div>
+                    <p class="text-accent-gold font-bold text-[11px] uppercase tracking-widest mb-4 italic">
                         WHEN YOU THINK CSR, THINK KSR
                     </p>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 max-w-xs font-medium">
+                    <p class="text-slate-400 text-xs leading-relaxed mb-8 max-w-xs font-medium">
                         India's trusted platform for transparent CSR execution and compliance management.
                     </p>
-                    <div class="space-y-4 text-sm text-slate-400 font-medium">
-                        <p class="flex items-center hover:text-white transition cursor-pointer"><i class="far fa-envelope w-6 text-slate-600"></i> contact@ksr.org</p>
-                        <p class="flex items-center hover:text-white transition cursor-pointer"><i class="fas fa-phone-alt w-6 text-slate-600"></i> +91 123 456 7890</p>
+                    <div class="space-y-3 text-xs text-slate-400 font-medium">
+                        <p class="flex items-center"><i class="far fa-envelope w-5 text-slate-600"></i> contact@ksr.org</p>
+                        <p class="flex items-center"><i class="fas fa-phone-alt w-5 text-slate-600"></i> +91 123 456 7890</p>
                     </div>
                 </div>
 
                 <!-- Column 2: Platform -->
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg uppercase tracking-widest">Platform</h5>
-                    <ul class="space-y-4 text-slate-400 text-sm font-bold">
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Platform</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
                         <li><a href="#how-we-work-section" class="hover:text-accent-gold transition">How It Works</a></li>
                         <li><a href="#" class="hover:text-accent-gold transition">Verified NGOs</a></li>
                         <li><a href="#impact" class="hover:text-accent-gold transition">Impact Stories</a></li>
@@ -484,8 +455,8 @@
 
                 <!-- Column 3: Partners -->
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg uppercase tracking-widest">Partners</h5>
-                    <ul class="space-y-4 text-slate-400 text-sm font-bold">
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Partners</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
                         <li><a href="#" class="hover:text-accent-gold transition">For Corporates</a></li>
                         <li><a href="#" class="hover:text-accent-gold transition">For NGOs</a></li>
                         <li><a href="#" class="hover:text-accent-gold transition">Partner Login</a></li>
@@ -494,8 +465,8 @@
 
                 <!-- Column 4: Legal -->
                 <div>
-                    <h5 class="font-bold text-white mb-8 text-lg uppercase tracking-widest">Legal</h5>
-                    <ul class="space-y-4 text-slate-400 text-sm font-bold">
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Legal</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
                         <li><a href="#" class="hover:text-accent-gold transition">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-accent-gold transition">Terms of Service</a></li>
                         <li><a href="#" class="hover:text-accent-gold transition">CSR Act Compliance</a></li>
@@ -504,15 +475,15 @@
             </div>
 
             <!-- Bottom Bar -->
-            <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[11px] font-black text-slate-600 uppercase tracking-widest">
-                <div class="flex items-center space-x-10 mb-6 md:mb-0">
+            <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold text-slate-600 uppercase tracking-widest">
+                <div class="flex items-center space-x-8 mb-4 md:mb-0">
                     <p>&copy; 2026 KSR. All rights reserved.</p>
                     <div class="flex space-x-6">
-                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-lg"></i></a>
-                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-base"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-base"></i></a>
                     </div>
                 </div>
-                <p class="tracking-[0.2em]">A National CSR Infrastructure Initiative</p>
+                <p class="tracking-[0.1em]">A National CSR Infrastructure Initiative</p>
             </div>
         </div>
     </footer>
@@ -537,11 +508,9 @@
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             indicators.forEach((ind, idx) => {
                 if(idx === currentIndex) {
-                    ind.classList.add('active', 'w-12', 'bg-slate-500');
-                    ind.classList.remove('w-4', 'bg-slate-200');
+                    ind.classList.add('active');
                 } else {
-                    ind.classList.remove('active', 'w-12', 'bg-slate-500');
-                    ind.classList.add('w-4', 'bg-slate-200');
+                    ind.classList.remove('active');
                 }
             });
         }
@@ -549,7 +518,7 @@
         document.getElementById('next-btn').addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalCards; updateCarousel(); });
         document.getElementById('prev-btn').addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalCards) % totalCards; updateCarousel(); });
 
-        setInterval(() => { currentIndex = (currentIndex + 1) % totalCards; updateCarousel(); }, 7000);
+        setInterval(() => { currentIndex = (currentIndex + 1) % totalCards; updateCarousel(); }, 8000);
         updateCarousel();
     </script>
 </body>
