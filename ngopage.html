@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified NGO Network - KSR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #475569;
+            background-color: #fcfcfc;
+            scroll-behavior: smooth;
+        }
+        
+        .text-slate-heavy { color: #0f172a; }
+        .text-accent-gold { color: #b45309; }
+        .bg-accent-gold { background-color: #b45309; }
+
+        /* iOS-style Glassmorphism Nav */
+        .navbar-ios {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 4px 12px -2px rgba(0, 0, 0, 0.03),
+                0 20px 40px -10px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Filter Pills */
+        .filter-pill {
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            background: white;
+            color: #64748b;
+            white-space: nowrap;
+        }
+        .filter-pill.active {
+            background: #0f172a;
+            color: white;
+            border-color: #0f172a;
+        }
+        .filter-pill:hover:not(.active) {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+
+        /* NGO Premium Cards */
+        .ngo-card {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #f1f5f9;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .ngo-card:hover {
+            transform: translateY(-8px);
+            border-color: #b45309;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+        }
+
+        .verified-tag {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #059669;
+            background: #ecfdf5;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ngo-icon-box {
+            width: 48px;
+            height: 48px;
+            background: #f8fafc;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        body {
+            position: relative;
+        }
+        .texture-bg::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            background-attachment: fixed;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Ensure all direct children of body stack above the texture */
+        .texture-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hide scrollbar for filter container */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @media (max-width: 768px) {
+            .hero-split { flex-direction: column !important; }
+            .hero-split > div { width: 100% !important; }
+        }
+    </style>
+</head>
+<body class="texture-bg">
+
+    <!-- Header / Nav Bar -->
+    <div class="fixed top-0 w-full z-50 px-4 pt-6">
+        <header class="container mx-auto navbar-ios px-8 h-16 flex items-center justify-between max-w-4xl">
+            <div class="flex items-center">
+                <a href="index.html" class="text-xl font-extrabold tracking-tighter text-slate-800 uppercase">KSR</a>
+            </div>
+            <nav class="hidden lg:flex space-x-8 text-[14px] font-semibold text-slate-600">
+                <a href="index.html" class="hover:text-slate-900 transition">Home</a>
+                <a href="how-it-works.html" class="hover:text-slate-900 transition">How It Works</a>
+                <a href="#" class="text-slate-900 border-b-2 border-accent-gold">NGOs</a>
+                <a href="index.html#impact" class="hover:text-slate-900 transition">Impact</a>
+            </nav>
+            <div class="flex items-center">
+                <a href="#" class="bg-slate-900 text-white px-5 py-2 rounded-full text-[11px] font-bold tracking-wider hover:bg-slate-800 transition shadow-lg">DASHBOARD</a>
+            </div>
+        </header>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section class="pt-48 pb-16 bg-white border-b border-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 hero-split max-w-6xl mx-auto">
+                <div class="lg:w-1/2">
+                    <div class="inline-flex items-center space-x-2 text-[10px] font-bold text-slate-400 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-full mb-6">
+                        <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <span class="uppercase tracking-widest">Institutional Partners</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
+                        Verified <br><span class="text-accent-gold italic">NGO</span> Network.
+                    </h1>
+                    <p class="text-base text-slate-500 mb-8 max-w-md leading-relaxed">
+                        Connect with rigorous pre-vetted implementation partners ready to execute your CSR vision with absolute transparency and statutory compliance.
+                    </p>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="rounded-[40px] overflow-hidden shadow-2xl border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="NGO Action" class="w-full h-[340px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Search & Filter Section (Sticky behavior removed) -->
+    <section class="py-12 bg-transparent">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="navbar-ios p-3 flex flex-col md:flex-row items-center gap-4 bg-white/95">
+                <div class="flex-grow relative w-full md:w-auto">
+                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 text-sm"></i>
+                    <input type="text" placeholder="Search by name, mission, or focus area..." class="w-full bg-transparent pl-12 pr-6 py-2.5 outline-none text-sm font-medium text-slate-700 placeholder:text-slate-300">
+                </div>
+                <div class="h-6 w-px bg-slate-100 hidden md:block"></div>
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full md:w-auto pb-2 md:pb-0">
+                    <button class="filter-pill active">All Sectors</button>
+                    <button class="filter-pill">Education</button>
+                    <button class="filter-pill">Healthcare</button>
+                    <button class="filter-pill">Environment</button>
+                    <button class="filter-pill">Rural Dev.</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NGO Grid -->
+    <section class="pb-24">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- NGO Card 1 -->
+                <div class="ngo-card">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="ngo-icon-box"><i class="fas fa-university"></i></div>
+                            <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Pratham Education Foundation</h4>
+                        <p class="text-[13px] text-slate-500 leading-relaxed mb-6 font-medium">Ensuring every child is in school and learning well through high-quality low-cost interventions.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Education</span>
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Child Welfare</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Reach</p>
+                            <p class="text-sm font-bold text-slate-700">Pan India</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Impact</p>
+                            <p class="text-sm font-bold text-slate-900">500K+ Children</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NGO Card 2 -->
+                <div class="ngo-card">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="ngo-icon-box"><i class="fas fa-recycle"></i></div>
+                            <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Goonj</h4>
+                        <p class="text-[13px] text-slate-500 leading-relaxed mb-6 font-medium">Converting urban waste into a resource for rural development and disaster relief across India.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Rural Development</span>
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Environment</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Reach</p>
+                            <p class="text-sm font-bold text-slate-700">Pan India</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Impact</p>
+                            <p class="text-sm font-bold text-slate-900">1.2M+ Lives</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NGO Card 3 -->
+                <div class="ngo-card">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="ngo-icon-box"><i class="fas fa-bowl-food"></i></div>
+                            <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Akshaya Patra Foundation</h4>
+                        <p class="text-[13px] text-slate-500 leading-relaxed mb-6 font-medium">World's largest mid-day meal program, ensuring no child is deprived of education due to hunger.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Education</span>
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Nutrition</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Reach</p>
+                            <p class="text-sm font-bold text-slate-700">12 States</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Impact</p>
+                            <p class="text-sm font-bold text-slate-900">2M+ Daily Meals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NGO Card 4 -->
+                <div class="ngo-card">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="ngo-icon-box"><i class="fas fa-chalkboard-user"></i></div>
+                            <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Teach For India</h4>
+                        <p class="text-[13px] text-slate-500 leading-relaxed mb-6 font-medium">Building a movement of leaders who will eliminate educational inequity in India's public schools.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Education</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Reach</p>
+                            <p class="text-sm font-bold text-slate-700">8 Metros</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Impact</p>
+                            <p class="text-sm font-bold text-slate-900">38K+ Students</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NGO Card 5 -->
+                <div class="ngo-card">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="ngo-icon-box"><i class="fas fa-hand-holding-medical"></i></div>
+                            <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">CARE India</h4>
+                        <p class="text-[13px] text-slate-500 leading-relaxed mb-6 font-medium">Focusing on ending poverty and social injustice by empowering women and girls from marginalized groups.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Healthcare</span>
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded">Women Empowerment</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-50 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Reach</p>
+                            <p class="text-sm font-bold text-slate-700">North India</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-0.5">Impact</p>
+                            <p class="text-sm font-bold text-slate-900">650K+ Lives</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CTA Section -->
+    <section class="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="container mx-auto px-6 text-center max-w-3xl relative z-10">
+            <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6 tracking-tight">Scale Your Vision with <br><span class="text-accent-gold italic">Institutional Trust</span></h2>
+            <p class="text-slate-400 mb-12 text-lg font-medium">Join our verified network and access structured institutional CSR funding from India's leading companies.</p>
+            <button class="bg-white text-slate-900 px-12 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-slate-100 transition shadow-xl">APPLY FOR VERIFICATION</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-black text-white pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center lg:text-left">
+                <div>
+                    <div class="mb-6"><span class="text-2xl font-extrabold tracking-tighter uppercase">KSR</span></div>
+                    <p class="text-accent-gold font-bold text-[11px] uppercase tracking-widest mb-4 italic">THINK CSR, THINK KSR</p>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-8 max-w-xs mx-auto lg:mx-0 font-medium">India's trusted platform for transparent execution.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Platform</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
+                        <li><a href="how-it-works.html" class="hover:text-accent-gold transition">How It Works</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Verified NGOs</a></li>
+                        <li><a href="index.html#impact" class="hover:text-accent-gold transition">Impact Stories</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Partners</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
+                        <li><a href="#" class="hover:text-accent-gold transition">For Corporates</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">For NGOs</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Partner Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Connect</h5>
+                    <div class="space-y-3 text-xs font-medium">
+                        <p class="flex items-center justify-center lg:justify-start"><i class="far fa-envelope w-5"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdaea2a3b9acaeb98da6bebfe3a2bfaa">[email&#160;protected]</a></p>
+                        <p class="flex items-center justify-center lg:justify-start"><i class="fas fa-phone-alt w-5"></i> +91 123 456 7890</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold text-slate-600 uppercase tracking-widest">
+                <p>&copy; 2026 KSR. All rights reserved.</p>
+                <p class="tracking-[0.1

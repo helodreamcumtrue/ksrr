@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - KSR CSR Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #475569;
+            background-color: #fdfdfd;
+            scroll-behavior: smooth;
+        }
+        
+        .text-slate-heavy { color: #0f172a; }
+        .text-accent-gold { color: #b45309; }
+        .bg-accent-gold { background-color: #b45309; }
+
+        /* iOS-style Glassmorphism Nav */
+        .navbar-ios {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 4px 12px -2px rgba(0, 0, 0, 0.03),
+                0 15px 30px -10px rgba(15, 23, 42, 0.12);
+        }
+
+        .phase-badge {
+            background: rgba(180, 83, 9, 0.1);
+            color: #b45309;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .phase-card-img {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .check-icon {
+            width: 18px;
+            height: 18px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b45309;
+            font-size: 8px;
+        }
+
+        /* FIX: opacity:0.4 was on the body itself, making ALL content
+           ghost-transparent. Moved texture to ::before so only the
+           background pattern fades — content stays fully opaque. */
+        .texture-bg {
+            position: relative;
+        }
+        .texture-bg::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            background-attachment: fixed;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .texture-bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .staggered-row { flex-direction: column !important; }
+            .staggered-row > div { width: 100% !important; }
+        }
+    </style>
+</head>
+<body class="texture-bg">
+
+    <!-- Header / Nav Bar -->
+    <div class="fixed top-0 w-full z-50 px-4 pt-6">
+        <header class="container mx-auto navbar-ios px-8 h-16 flex items-center justify-between max-w-4xl">
+            <div class="flex items-center">
+                <a href="index.html" class="text-xl font-extrabold tracking-tighter text-slate-800 uppercase">KSR</a>
+            </div>
+            <nav class="hidden lg:flex space-x-8 text-[14px] font-semibold text-slate-600">
+                <a href="index.html" class="hover:text-slate-900 transition">Home</a>
+                <a href="#" class="text-slate-900 border-b-2 border-accent-gold">How It Works</a>
+                <a href="#impact" class="hover:text-slate-900 transition">Impact</a>
+                <a href="#success" class="hover:text-slate-900 transition">Success</a>
+            </nav>
+            <div class="flex items-center">
+                <a href="#" class="bg-slate-900 text-white px-5 py-2 rounded-full text-[11px] font-bold tracking-wider hover:bg-slate-800 transition">DASHBOARD</a>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-48 pb-24 bg-white border-b border-slate-50">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <p class="text-accent-gold font-bold text-[11px] uppercase mb-4 tracking-[0.4em]">Our Methodology</p>
+            <h1 class="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight mb-8 tracking-tight">
+                Transparent, <br><span class="italic text-accent-gold">Milestone-Driven</span> Execution.
+            </h1>
+            <p class="text-slate-500 text-lg leading-relaxed">
+                A systematic process that ensures every rupee creates measurable impact while maintaining complete regulatory compliance.
+            </p>
+        </div>
+    </section>
+
+    <!-- Phase 01: Define Mandate -->
+    <section class="py-24">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-row items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Mandate" class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="phase-badge mb-6">Phase 01</div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Define CSR Mandate</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Corporates specify their CSR focus areas, target geographies, budget allocation, and impact goals based on business priorities.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Define focus sectors (Education, Healthcare, etc.)</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Select target regions across India</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Allocate CSR budget</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Establish impact metrics</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 02: Structure Projects -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-row-reverse items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img">
+                        <img src="https://images.unsplash.com/photo-1454165833767-131421559bdf?auto=format&fit=crop&w=800&q=80" alt="Projects" class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="phase-badge mb-6">Phase 02</div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Structure Projects</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">KSR structures compliant CSR initiatives that align with corporate objectives and the Companies Act 2013.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Project feasibility analysis</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Compliance framework design</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Budget & timeline planning</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Risk assessment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 03: Search & Verify -->
+    <section class="py-24">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-row items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5310f94f17?auto=format&fit=crop&w=800&q=80" alt="Verification" class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="phase-badge mb-6">Phase 03</div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Search & Verify NGOs</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">We identify implementation partners through rigorous due diligence and match them to your specific project requirements.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Document verification (CSR-1, 12A, 80G)</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Past record assessment</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Geographic matching</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Ground checks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 04: Escrow Protection -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="container mx-auto px-6 max-w-5xl relative z-10">
+            <div class="flex flex-row-reverse items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Security" class="w-full h-[400px] object-cover brightness-75">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="bg-accent-gold text-white text-[10px] font-extrabold tracking-widest px-3 py-1 rounded-md w-fit mb-6 uppercase">Phase 04</div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Escrow Protection</h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">Funds are held in secure escrow accounts and released only upon verification of pre-agreed-upon milestones.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="flex items-center gap-3 text-sm font-semibold mb-3 text-slate-200"><i class="fas fa-shield-halved text-accent-gold"></i> Bank-grade protocols</div>
+                        <div class="flex items-center gap-3 text-sm font-semibold mb-3 text-slate-200"><i class="fas fa-eye text-accent-gold"></i> Transparent tracking</div>
+                        <div class="flex items-center gap-3 text-sm font-semibold mb-3 text-slate-200"><i class="fas fa-users-cog text-accent-gold"></i> Multi-party authorization</div>
+                        <div class="flex items-center gap-3 text-sm font-semibold mb-3 text-slate-200"><i class="fas fa-file-invoice-dollar text-accent-gold"></i> Audit trail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 05: Milestone Execution -->
+    <section class="py-24">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-row items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Execution" class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="phase-badge mb-6">Phase 05</div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Milestone Execution</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Projects are executed in phases. Funds are released progressively as each milestone is verified by KSR.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Phased implementation</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Real-time monitoring</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Evidence collection</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> 3rd party verification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 06: Reporting -->
+    <section class="py-24 bg-white border-t border-slate-50">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-row-reverse items-center gap-16 staggered-row">
+                <div class="w-1/2">
+                    <div class="phase-card-img">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Reporting" class="w-full h-[400px] object-cover">
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <div class="phase-badge mb-6">Phase 06</div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Audit-Ready Reporting</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Comprehensive documentation is generated automatically, providing all necessary reports for regulatory compliance.</p>
+                    <div class="grid grid-cols-1 gap-1">
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Annual Report (Schedule VII)</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Impact assessment</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Utilization certificates</div>
+                        <div class="check-item"><span class="check-icon"><i class="fas fa-check"></i></span> Beneficiary records</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Start Your Journey with Bank-Grade Trust.</h2>
+            <p class="text-slate-500 mb-10">Join India's leading corporates in executing impactful, compliant CSR programs.</p>
+            <div class="flex justify-center gap-4">
+                <button class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold text-xs tracking-widest shadow-lg">GET STARTED</button>
+                <button class="bg-white border border-slate-200 text-slate-800 px-8 py-3 rounded-full font-bold text-xs tracking-widest">TALK TO US</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-black text-white pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center lg:text-left">
+                <div>
+                    <div class="mb-6"><span class="text-2xl font-extrabold tracking-tighter uppercase">KSR</span></div>
+                    <p class="text-accent-gold font-bold text-[11px] uppercase tracking-widest mb-4 italic">THINK CSR, THINK KSR</p>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-8 max-w-xs mx-auto lg:mx-0 font-medium">India's trusted platform for transparent execution.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Platform</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
+                        <li><a href="#" class="hover:text-accent-gold transition">How It Works</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Verified NGOs</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">Impact Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Partners</h5>
+                    <ul class="space-y-3 text-slate-400 text-xs font-semibold">
+                        <li><a href="#" class="hover:text-accent-gold transition">For Corporates</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition">For NGOs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 text-sm uppercase tracking-widest">Connect</h5>
+                    <div class="space-y-3 text-xs font-medium">
+                        <p class="flex items-center justify-center lg:justify-start"><i class="far fa-envelope w-5"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8fece0e1fbeeecfbcfe4fcfda1e0fde8">[email&#160;protected]</a></p>
+                        <p class="flex items-center justify-center lg:justify-start"><i class="fas fa-phone-alt w-5"></i> +91 123 456 7890</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold text-slate-600 uppercase tracking-widest">
+                <p>&copy; 2026 KSR. All rights reserved.</p>
+                <p class="tracking-[0.1
