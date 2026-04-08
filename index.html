@@ -171,6 +171,132 @@
         }
         #success-toast.show { transform: translateX(-50%) translateY(0); }
 
+        /* ---- NGO PAGE STYLES ---- */
+        .ngo-card {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #f1f5f9;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .ngo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.12);
+            border-color: #b45309;
+        }
+
+        .ngo-icon-box {
+            width: 48px;
+            height: 48px;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #334155;
+            font-size: 16px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .ngo-card:hover .ngo-icon-box {
+            background: #0f172a;
+            color: white;
+        }
+
+        .verified-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(16, 185, 129, 0.08);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-pill {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #e2e8f0;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .filter-pill:hover {
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+        .filter-pill.active {
+            background: #0f172a;
+            color: white;
+            border-color: #0f172a;
+        }
+
+        /* ---- HOW IT WORKS PAGE STYLES ---- */
+        .phase-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #0f172a;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 6px 14px;
+            border-radius: 6px;
+        }
+
+        .phase-card-img {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -15px rgba(15, 23, 42, 0.12);
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            padding: 10px 0;
+            border-bottom: 1px solid #f8fafc;
+        }
+        .check-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 22px;
+            height: 22px;
+            background: #0f172a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            flex-shrink: 0;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         @media (max-width: 1024px) {
             .impact-card { flex-direction: column; max-width: 500px; margin: 0 auto; }
             .impact-card-left, .impact-card-right { width: 100%; min-height: unset; }
@@ -183,6 +309,11 @@
 
 <body class="texture-bg">
 
+<!-- Success Toast Element -->
+<div id="success-toast">
+    <i class="fas fa-check-circle text-emerald-400"></i>
+    <span class="text-sm font-bold">Request submitted successfully!</span>
+</div>
 
 <!-- ================= NAVBAR (FROM INDEX) ================= -->
 
@@ -673,8 +804,6 @@ EXCEPT NAVBAR AND FOOTER -->
             </div>
         </div>
     </section>
-<!-- PASTE CONTENT FROM how-it-works.html
-EXCEPT NAVBAR AND FOOTER -->
 
 </section>
 
@@ -684,8 +813,6 @@ EXCEPT NAVBAR AND FOOTER -->
 
 <section id="ngo-section">
 
-<!-- PASTE CONTENT FROM ngopage.html
-EXCEPT NAVBAR AND FOOTER -->
 <section class="pt-48 pb-16 bg-white border-b border-slate-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 hero-split max-w-6xl mx-auto">
@@ -991,8 +1118,15 @@ EXCEPT NAVBAR AND FOOTER -->
             e.target.reset();
             setTimeout(() => { toast.classList.remove('show'); }, 4000);
         });
+
+        // Filter Pills
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
     </script>
-<!-- COPY FULL FOOTER FROM index (1).html -->
 
 </body>
 </html>
